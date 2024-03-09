@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		80E5B8F52B9C392F003BB345 /* RootVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 80E5B8F42B9C392F003BB345 /* RootVC.m */; };
+		80E5B8F82B9C3F68003BB345 /* SwiftOneVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80E5B8F72B9C3F68003BB345 /* SwiftOneVC.swift */; };
 		C2D32AC02B2DEB5C00EFDB8D /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C2D32ABF2B2DEB5C00EFDB8D /* AppDelegate.m */; };
 		C2D32ACB2B2DEB5D00EFDB8D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C2D32ACA2B2DEB5D00EFDB8D /* Assets.xcassets */; };
 		C2D32ACE2B2DEB5D00EFDB8D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C2D32ACC2B2DEB5D00EFDB8D /* LaunchScreen.storyboard */; };
@@ -17,6 +18,8 @@
 /* Begin PBXFileReference section */
 		80E5B8F32B9C392F003BB345 /* RootVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RootVC.h; sourceTree = "<group>"; };
 		80E5B8F42B9C392F003BB345 /* RootVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RootVC.m; sourceTree = "<group>"; };
+		80E5B8F62B9C3F67003BB345 /* ProjectObjectiveC-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ProjectObjectiveC-Bridging-Header.h"; sourceTree = "<group>"; };
+		80E5B8F72B9C3F68003BB345 /* SwiftOneVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftOneVC.swift; sourceTree = "<group>"; };
 		C2D32ABB2B2DEB5C00EFDB8D /* ProjectObjectiveC.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ProjectObjectiveC.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C2D32ABE2B2DEB5C00EFDB8D /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		C2D32ABF2B2DEB5C00EFDB8D /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -60,10 +63,12 @@
 				C2D32ABF2B2DEB5C00EFDB8D /* AppDelegate.m */,
 				80E5B8F32B9C392F003BB345 /* RootVC.h */,
 				80E5B8F42B9C392F003BB345 /* RootVC.m */,
+				80E5B8F72B9C3F68003BB345 /* SwiftOneVC.swift */,
 				C2D32ACA2B2DEB5D00EFDB8D /* Assets.xcassets */,
 				C2D32ACC2B2DEB5D00EFDB8D /* LaunchScreen.storyboard */,
 				C2D32ACF2B2DEB5D00EFDB8D /* Info.plist */,
 				C2D32AD02B2DEB5D00EFDB8D /* main.m */,
+				80E5B8F62B9C3F67003BB345 /* ProjectObjectiveC-Bridging-Header.h */,
 			);
 			path = ProjectObjectiveC;
 			sourceTree = "<group>";
@@ -99,6 +104,7 @@
 				TargetAttributes = {
 					C2D32ABA2B2DEB5C00EFDB8D = {
 						CreatedOnToolsVersion = 15.0.1;
+						LastSwiftMigration = 1500;
 					};
 				};
 			};
@@ -140,6 +146,7 @@
 				80E5B8F52B9C392F003BB345 /* RootVC.m in Sources */,
 				C2D32AC02B2DEB5C00EFDB8D /* AppDelegate.m in Sources */,
 				C2D32AD12B2DEB5D00EFDB8D /* main.m in Sources */,
+				80E5B8F82B9C3F68003BB345 /* SwiftOneVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -278,6 +285,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 5ZJ72V355S;
@@ -296,6 +304,9 @@
 				PRODUCT_BUNDLE_IDENTIFIER = pandakingli.ProjectObjectiveC;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "ProjectObjectiveC/ProjectObjectiveC-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -305,6 +316,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 5ZJ72V355S;
@@ -323,6 +335,8 @@
 				PRODUCT_BUNDLE_IDENTIFIER = pandakingli.ProjectObjectiveC;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "ProjectObjectiveC/ProjectObjectiveC-Bridging-Header.h";
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;

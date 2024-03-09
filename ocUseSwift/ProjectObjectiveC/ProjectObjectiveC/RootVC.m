@@ -6,7 +6,7 @@
 //
 
 #import "RootVC.h"
-
+#import "ProjectObjectiveC-Swift.h"
 @interface RootVC ()
 
 @end
@@ -19,6 +19,11 @@
     // Do any additional setup after loading the view.
 }
 
+- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
+    UIViewController *v = [[SwiftOneVC alloc]init];
+    [self presentViewController:v animated:YES completion:nil];
+    
+}
 /*
 #pragma mark - Navigation
 
