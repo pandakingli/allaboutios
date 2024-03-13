@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		C23D48592B41722300647413 /* RNTestVC.m in Sources */ = {isa = PBXBuildFile; fileRef = C23D48582B41722300647413 /* RNTestVC.m */; };
+		C23D485C2B41862200647413 /* TestModule.m in Sources */ = {isa = PBXBuildFile; fileRef = C23D485B2B41862200647413 /* TestModule.m */; };
 		C29CBB0A3A067F5A1BA0D084 /* libPods-ProjectObjectiveC.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D0B55255C1569CD5825EA610 /* libPods-ProjectObjectiveC.a */; };
 		C2D32AC02B2DEB5C00EFDB8D /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C2D32ABF2B2DEB5C00EFDB8D /* AppDelegate.m */; };
 		C2D32AC32B2DEB5C00EFDB8D /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C2D32AC22B2DEB5C00EFDB8D /* SceneDelegate.m */; };
@@ -22,6 +23,8 @@
 		0586BEB0FC05872E55C9DD95 /* Pods-ProjectObjectiveC.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ProjectObjectiveC.release.xcconfig"; path = "Target Support Files/Pods-ProjectObjectiveC/Pods-ProjectObjectiveC.release.xcconfig"; sourceTree = "<group>"; };
 		C23D48572B41722300647413 /* RNTestVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RNTestVC.h; sourceTree = "<group>"; };
 		C23D48582B41722300647413 /* RNTestVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RNTestVC.m; sourceTree = "<group>"; };
+		C23D485A2B41862200647413 /* TestModule.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TestModule.h; sourceTree = "<group>"; };
+		C23D485B2B41862200647413 /* TestModule.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TestModule.m; sourceTree = "<group>"; };
 		C2D32ABB2B2DEB5C00EFDB8D /* ProjectObjectiveC.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ProjectObjectiveC.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C2D32ABE2B2DEB5C00EFDB8D /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		C2D32ABF2B2DEB5C00EFDB8D /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -96,6 +99,8 @@
 				C2D32AC52B2DEB5C00EFDB8D /* ViewController.m */,
 				C23D48572B41722300647413 /* RNTestVC.h */,
 				C23D48582B41722300647413 /* RNTestVC.m */,
+				C23D485A2B41862200647413 /* TestModule.h */,
+				C23D485B2B41862200647413 /* TestModule.m */,
 				C2D32AC72B2DEB5C00EFDB8D /* Main.storyboard */,
 				C2D32ACA2B2DEB5D00EFDB8D /* Assets.xcassets */,
 				C2D32ACC2B2DEB5D00EFDB8D /* LaunchScreen.storyboard */,
@@ -238,6 +243,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C2D32AC62B2DEB5C00EFDB8D /* ViewController.m in Sources */,
+				C23D485C2B41862200647413 /* TestModule.m in Sources */,
 				C23D48592B41722300647413 /* RNTestVC.m in Sources */,
 				C2D32AC02B2DEB5C00EFDB8D /* AppDelegate.m in Sources */,
 				C2D32AD12B2DEB5D00EFDB8D /* main.m in Sources */,
