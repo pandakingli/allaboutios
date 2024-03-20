@@ -8,6 +8,7 @@
 #import "RootVC.h"
 #import "Person.h"
 #import "Person+WY.h"
+#import "testModifier.h"
 
 @interface RootVC ()
 
@@ -33,6 +34,9 @@
     [[Person new] wy_add];
     //https://juejin.cn/post/6844904181615034376
     //静态变量的作用域与对象、类、分类没关系，只与文件有关系。
+    
+   // appBaseURL;
+    
 }
 
 @end

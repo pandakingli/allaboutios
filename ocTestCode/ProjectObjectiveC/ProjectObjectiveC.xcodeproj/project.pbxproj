@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		804C57222BA96FB100CCC57D /* Person.m in Sources */ = {isa = PBXBuildFile; fileRef = 804C57212BA96FB100CCC57D /* Person.m */; };
 		804C57252BA9704E00CCC57D /* Person+WY.m in Sources */ = {isa = PBXBuildFile; fileRef = 804C57242BA9704E00CCC57D /* Person+WY.m */; };
+		80D0CE8D2BAA879000F4B39D /* testModifier.m in Sources */ = {isa = PBXBuildFile; fileRef = 80D0CE8C2BAA879000F4B39D /* testModifier.m */; };
 		80E5B8F52B9C392F003BB345 /* RootVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 80E5B8F42B9C392F003BB345 /* RootVC.m */; };
 		C2D32AC02B2DEB5C00EFDB8D /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C2D32ABF2B2DEB5C00EFDB8D /* AppDelegate.m */; };
 		C2D32ACB2B2DEB5D00EFDB8D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C2D32ACA2B2DEB5D00EFDB8D /* Assets.xcassets */; };
@@ -21,6 +22,8 @@
 		804C57212BA96FB100CCC57D /* Person.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Person.m; sourceTree = "<group>"; };
 		804C57232BA9704E00CCC57D /* Person+WY.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Person+WY.h"; sourceTree = "<group>"; };
 		804C57242BA9704E00CCC57D /* Person+WY.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "Person+WY.m"; sourceTree = "<group>"; };
+		80D0CE8B2BAA879000F4B39D /* testModifier.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = testModifier.h; sourceTree = "<group>"; };
+		80D0CE8C2BAA879000F4B39D /* testModifier.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = testModifier.m; sourceTree = "<group>"; };
 		80E5B8F32B9C392F003BB345 /* RootVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RootVC.h; sourceTree = "<group>"; };
 		80E5B8F42B9C392F003BB345 /* RootVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RootVC.m; sourceTree = "<group>"; };
 		C2D32ABB2B2DEB5C00EFDB8D /* ProjectObjectiveC.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ProjectObjectiveC.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -70,6 +73,8 @@
 				804C57242BA9704E00CCC57D /* Person+WY.m */,
 				80E5B8F32B9C392F003BB345 /* RootVC.h */,
 				80E5B8F42B9C392F003BB345 /* RootVC.m */,
+				80D0CE8B2BAA879000F4B39D /* testModifier.h */,
+				80D0CE8C2BAA879000F4B39D /* testModifier.m */,
 				C2D32ACA2B2DEB5D00EFDB8D /* Assets.xcassets */,
 				C2D32ACC2B2DEB5D00EFDB8D /* LaunchScreen.storyboard */,
 				C2D32ACF2B2DEB5D00EFDB8D /* Info.plist */,
@@ -149,6 +154,7 @@
 			files = (
 				80E5B8F52B9C392F003BB345 /* RootVC.m in Sources */,
 				C2D32AC02B2DEB5C00EFDB8D /* AppDelegate.m in Sources */,
+				80D0CE8D2BAA879000F4B39D /* testModifier.m in Sources */,
 				804C57222BA96FB100CCC57D /* Person.m in Sources */,
 				804C57252BA9704E00CCC57D /* Person+WY.m in Sources */,
 				C2D32AD12B2DEB5D00EFDB8D /* main.m in Sources */,
