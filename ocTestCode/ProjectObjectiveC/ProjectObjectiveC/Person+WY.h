@@ -2,7 +2,7 @@
 //  Person+WY.h
 //  ProjectObjectiveC
 //
-//  Created by lining02 on 2024/3/19.
+//  Created by pandakingli on 2024/3/19.
 //
 
 #import "Person.h"

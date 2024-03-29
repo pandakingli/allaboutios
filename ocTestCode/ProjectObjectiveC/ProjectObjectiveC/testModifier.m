@@ -2,12 +2,15 @@
 //  testModifier.m
 //  ProjectObjectiveC
 //
-//  Created by lining02 on 2024/3/20.
+//  Created by pandakingli on 2024/3/20.
 //
 
 #import "testModifier.h"
-static NSString *const appBaseURL = @"abc";
-static NSString const *name = @"abc";
+
+ static NSString *const testname = @"abc";
+ NSString *const appBaseURL = @"abc";
+ NSString *const name = @"123";
+
 @implementation testModifier
 
 @end
