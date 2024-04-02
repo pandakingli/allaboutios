@@ -22,6 +22,7 @@
 
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
     FlutterViewController *v = [[FlutterViewController alloc]init];
+    v.modalPresentationStyle = UIModalPresentationFullScreen;
     [self presentViewController:v animated:YES completion:nil];
 }
 
