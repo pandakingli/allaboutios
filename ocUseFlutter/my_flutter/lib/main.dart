@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+import 'package:flutter/services.dart';
 void main() => runApp(const MyApp());
 
 class MyApp extends StatelessWidget {
@@ -28,11 +28,15 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
-
+  final MethodChannel _channelHomePage = const MethodChannel("FlutterHomePage.channel");
   void _incrementCounter() {
     setState(() {
       _counter++;
     });
+  }
+
+  void _dismissFlutterHomePage() {
+    _channelHomePage.invokeMethod("dismiss");
   }
 
   @override
@@ -55,8 +59,8 @@ class _MyHomePageState extends State<MyHomePage> {
               style: Theme.of(context).textTheme.headlineMedium,
             ),
             ElevatedButton(
+              onPressed: _dismissFlutterHomePage,
               child: const Text("返回"),
-              onPressed: () {},
             )
           ],
         ),

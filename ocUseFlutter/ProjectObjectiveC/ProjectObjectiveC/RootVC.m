@@ -9,6 +9,9 @@
 #import <Flutter/Flutter.h>
 @interface RootVC ()
 @property(nonatomic,strong) UIButton * jumpBtn;
+@property(nonatomic,strong) FlutterViewController * flutterVC;
+@property(nonatomic,strong) FlutterMethodChannel * dismissChannel;
+
 @end
 
 @implementation RootVC
@@ -31,9 +34,35 @@
     return _jumpBtn;
 }
 
-- (void)clickjumpBtn {
-    FlutterViewController *v = [[FlutterViewController alloc]init];
-    v.modalPresentationStyle = UIModalPresentationFullScreen;
-    [self presentViewController:v animated:YES completion:nil];
+- (FlutterViewController *)flutterVC {
+    if (!_flutterVC) {
+        _flutterVC = [[FlutterViewController alloc]init];
+        _flutterVC.modalPresentationStyle = UIModalPresentationFullScreen;
+        
+        _dismissChannel = [FlutterMethodChannel methodChannelWithName:@"FlutterHomePage.channel" binaryMessenger:_flutterVC.binaryMessenger];
+        
+        __weak typeof(self) weakSelf = self;
+        [_dismissChannel setMethodCallHandler:^(FlutterMethodCall* call, FlutterResult result) {
+            if ([@"dismiss" isEqualToString:call.method]) {
+                
+                [weakSelf dismissViewControllerAnimated:true completion:^{
+                    
+                }];
+                
+            } else {
+                result(FlutterMethodNotImplemented);
+            }
+        }];
+        
+    }
+    return _flutterVC;
 }
+
+
+- (void)clickjumpBtn {
+    
+    [self presentViewController:self.flutterVC animated:YES completion:nil];
+}
+
+
 @end
