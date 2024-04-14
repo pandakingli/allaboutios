@@ -34,14 +34,12 @@ final pages = [const PageHome(),const PageList(),const PageInfo(),const PageMine
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text("底部导航栏"),),
+      appBar: AppBar(title: const Text("底部导航栏页面"),),
       bottomNavigationBar: BottomNavigationBar(
         items: bottomNavItems,
         currentIndex: currentPageIndex,
-        type: BottomNavigationBarType.shifting,
-        onTap: (index) {
-          _selectPage(index);
-        },
+        type: BottomNavigationBarType.fixed,
+        onTap: (index) => _selectPage(index),
       ),
       body: pages[currentPageIndex],
     );

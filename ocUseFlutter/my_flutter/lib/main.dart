@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:my_flutter/pageBottomNavBar.dart';
-
+import 'package:my_flutter/pageTopNavBar.dart';
 void main() => runApp(const MyApp());
 
 class MyApp extends StatelessWidget {
@@ -38,6 +38,17 @@ class _MyHomePageState extends State<MyHomePage> {
     });
   }
 
+  void _goToTopNavigationPage() {
+
+    Navigator.push(context, MaterialPageRoute(builder: (context) => const PageTopNavBar()));
+
+  }
+  void _goToBottomNavigationPage() {
+
+    Navigator.push(context, MaterialPageRoute(builder: (context) => const HomeBottomNavBar()));
+
+  }
+
   void _dismissFlutterHomePage() {
     _channelHomePage.invokeMethod("dismiss");
   }
@@ -62,8 +73,16 @@ class _MyHomePageState extends State<MyHomePage> {
               style: Theme.of(context).textTheme.headlineMedium,
             ),
             ElevatedButton(
+              onPressed: _goToTopNavigationPage,
+              child: const Text("Flutter顶部导航栏"),
+            ),
+            ElevatedButton(
+              onPressed: _goToBottomNavigationPage,
+              child: const Text("Flutter底部导航栏"),
+            ),
+            ElevatedButton(
               onPressed: _dismissFlutterHomePage,
-              child: const Text("返回"),
+              child: const Text("返回Native页面"),
             )
           ],
         ),
