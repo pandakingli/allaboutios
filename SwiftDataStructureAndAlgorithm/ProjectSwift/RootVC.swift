@@ -22,7 +22,9 @@ class RootVC: UIViewController {
         
        // var s = Solution().isValidSerialization("9,3,4,#,#,1,#,#,2,#,6,#,#")
         
-        
+        var s = Solution().trap([0,1,0,2,1,0,1,3,2,1,2,1])
+        var s2 = Solution().trap([4,2,0,3,2,5])
+        print(s,s2)
         
     }
 }
@@ -33,6 +35,89 @@ class Solution {
     func trap(_ height: [Int]) -> Int {
         var result = 0
         var stackArray = [Int]()
+        if height.count < 3 {
+            return 0
+        }
+        
+        
+        var leftIndex = 0
+        var leftNum = 0
+        
+        var rightIndex = 0
+        var rightNum = 0
+        
+        var tempBig = 0
+        var tempBigIndex = 0
+        var isGoing = true
+        
+        while isGoing {
+            tempBig = 0
+            stackArray.removeAll()
+            
+            if leftIndex >= height.count {
+                isGoing = false;
+                break //循环结束
+            }
+            
+            while height[leftIndex] <= 0 {
+                leftIndex = leftIndex + 1
+                if leftIndex >= height.count {
+                    break //循环结束
+                }
+            }
+            
+            if leftIndex >= height.count {
+                isGoing = false;
+                break //循环结束
+            }
+            
+            leftNum = height[leftIndex]
+            rightIndex = leftIndex + 1
+            
+            
+            if rightIndex >= height.count {
+                isGoing = false
+                break
+            }
+            
+            
+            while height[rightIndex] < leftNum {
+                
+                if height[rightIndex] >= tempBig {
+                    tempBig = height[rightIndex]
+                    tempBigIndex = rightIndex
+                }
+                
+                stackArray.append(height[rightIndex])
+                rightIndex = rightIndex + 1
+                
+                if rightIndex >= height.count {
+                    //右边全部都是低的
+                    
+                    for iIndex in leftIndex..<tempBigIndex {
+                        if tempBig >= height[iIndex] {
+                            result = result + ( tempBig - height[iIndex])
+                        }
+                    }
+                    
+                    
+                    break
+                }
+            }
+            
+            if rightIndex >= height.count {
+                leftIndex = tempBigIndex
+                continue
+            } else {
+              var min = min(leftNum, height[rightIndex])
+                stackArray.map { item in
+                    result = result + (min - item)
+                }
+                leftIndex = rightIndex
+            }
+            
+        }
+        
         
         
         return result
