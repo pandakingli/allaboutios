@@ -20,11 +20,23 @@ class RootVC: UIViewController {
         //let arr = Array(teststr)
         //print(arr)
         
-        var s = Solution().isValidSerialization("9,3,4,#,#,1,#,#,2,#,6,#,#")
+       // var s = Solution().isValidSerialization("9,3,4,#,#,1,#,#,2,#,6,#,#")
+        
+        
+        
     }
 }
 
 class Solution {
+    //42. 接雨水
+    //https://leetcode.cn/problems/trapping-rain-water/description/
+    func trap(_ height: [Int]) -> Int {
+        var result = 0
+        var stackArray = [Int]()
+        
+        
+        return result
+    }
     
     //2810. 故障键盘
     //https://leetcode.cn/problems/faulty-keyboard/description/
