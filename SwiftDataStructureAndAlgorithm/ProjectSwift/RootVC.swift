@@ -22,14 +22,44 @@ class RootVC: UIViewController {
         
        // var s = Solution().isValidSerialization("9,3,4,#,#,1,#,#,2,#,6,#,#")
         
-        var s = Solution().trap([0,1,0,2,1,0,1,3,2,1,2,1])
-        var s2 = Solution().trap([4,2,0,3,2,5])
-        print(s,s2)
+        //var s = Solution().trap([0,1,0,2,1,0,1,3,2,1,2,1])
+        //var s2 = Solution().trap([4,2,0,3,2,5])
+       // print(s,s2)
+        
+        print(Solution().maxPower("leetcode"))
         
     }
 }
 
 class Solution {
+    
+    //1446. 连续字符
+    func maxPower(_ s: String) -> Int {
+
+        var result = 0
+        if s.count < 1 {
+            return 0
+        }
+        
+        let arr = Array(s)
+        var tempLen = 0
+        var tempChar = arr[0]
+        for i in 0...arr.count-1 {
+            if arr[i] == tempChar {
+                tempLen = tempLen + 1
+                result = max(result, tempLen)
+            } else {
+                tempChar = arr[i]
+                tempLen = 1
+            }
+        }
+        
+        return result
+    }
+    
+    
+    
+    
     //42. 接雨水
     //https://leetcode.cn/problems/trapping-rain-water/description/
     func trap(_ height: [Int]) -> Int {
