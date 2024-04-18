@@ -7,6 +7,18 @@
 
 import UIKit
 
+
+ // Definition for singly-linked list.
+  public class ListNode {
+      public var val: Int
+      public var next: ListNode?
+      public init() { self.val = 0; self.next = nil; }
+      public init(_ val: Int) { self.val = val; self.next = nil; }
+      public init(_ val: Int, _ next: ListNode?) { self.val = val; self.next = next; }
+  }
+ 
+
+
 class RootVC: UIViewController {
 
     override func viewDidLoad() {
@@ -32,6 +44,71 @@ class RootVC: UIViewController {
 }
 
 class Solution {
+    //19. 删除链表的倒数第 N 个结点
+    //https://leetcode.cn/problems/remove-nth-node-from-end-of-list/description/
+    func removeNthFromEnd(_ head: ListNode?, _ n: Int) -> ListNode? {
+
+        if head == nil {
+            return nil
+        }
+        
+        if n <= 0 {
+            return head
+        }
+        
+        if head!.next == nil {
+            //已经到了最后一个节点
+            return nil
+        }
+        
+        var firstP:ListNode? = nil
+        var secondP:ListNode? = nil
+        
+
+        
+        var start = 0
+        while start < n {
+            if firstP == nil {
+                //刚开始进入
+                firstP = head
+            } else {
+                if firstP!.next != nil {
+                    //指向下一个节点
+                    firstP = firstP!.next
+                } else {
+                    break //到了最后一个节点了
+                }
+            }
+            start = start + 1
+        }
+        
+        if firstP!.next == nil {
+            secondP = head!.next
+            head!.next = nil
+            return secondP
+        }
+        
+        while firstP!.next != nil {
+            
+            if secondP == nil {
+                secondP = head!
+            } else {
+                if secondP!.next != nil {
+                    secondP = secondP!.next!
+                } else {
+                    
+                }
+            }
+            
+            firstP = firstP!.next!
+        }
+        
+        if secondP!.next != nil {
+            secondP!.next = secondP!.next!.next
+        }
+        
+        return head
+    }
     
     //1446. 连续字符
     func maxPower(_ s: String) -> Int {
