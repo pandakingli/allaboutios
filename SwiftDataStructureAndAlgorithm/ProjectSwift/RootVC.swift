@@ -38,8 +38,8 @@ class RootVC: UIViewController {
         //var s2 = Solution().trap([4,2,0,3,2,5])
        // print(s,s2)
         
-        print(Solution().maxPower("leetcode"))
-        
+       // print(Solution().maxPower("leetcode"))
+        print(Solution().threeSum([-1,0,1,2,-1,-4]))
     }
 }
 
@@ -50,8 +50,6 @@ class Solution {
     func threeSum(_ nums: [Int]) -> [[Int]] {
 
         var result = [[Int]]()
-        
-        
         if nums.count < 3 {
             return result //少于3个，直接返回空
         }
@@ -101,7 +99,7 @@ class Solution {
         }
         
         var dict : [String : Bool] = [String : Bool]()
-        var xinArray = kindNum.sorted()
+        let xinArray = kindNum.sorted()
         
         for i in 0...xinArray.count - 3 {
             
@@ -109,62 +107,24 @@ class Solution {
             var right = xinArray.count - 1
             
             while left < right {
-                
-            }
-        }
-        
-        
-       // if kindNum.count
-        
-        if kindNum.count < 3 {
-            if zeroCount >= 3 {
-                result.append([0,0,0])
-            }
-            if kindNum.count == 2 {
-                if kindNum[0] + 2 * kindNum[1] == 0 {
-                    result.append([kindNum[0],kindNum[1],kindNum[1]])
-                }
-                
-                if kindNum[1] + 2 * kindNum[0] == 0 {
-                    result.append([kindNum[0],kindNum[0],kindNum[1]])
-                }
-            }
-            return result
-        }
-        
-        if kindNum.count == 3 {
-            if zeroCount >= 3 {
-                result.append([0,0,0])
-            }
-            
-            if kindNum[0] + kindNum[1] + kindNum[2] == 0 {
-                result.append([kindNum[0] , kindNum[1] , kindNum[2]])
-                return result
-            } else {
-                return result
-            }
-        }
-        
-        for i in 0...nums.count - 3 {
-            for j in i + 1 ... nums.count - 2 {
-                for k in j + 1 ... nums.count - 1 {
-                    var temp = nums[i] + nums[j] + nums[k]
-                    if temp == 0 {
-                        var tempArr = [nums[i] , nums[j] , nums[k]].sorted()
-                        let keystr = tempArr.map({String($0)}).joined()
-                        if dict[keystr] == true {
-                            
-                        } else {
-                            dict[keystr] = true
-                            result.append(tempArr)
-                        }
+                let temp = xinArray[i] + xinArray[left] + xinArray[right]
+                if temp == 0 {
+                    let tempArr = [xinArray[i], xinArray[left], xinArray[right]]
+                    let keystr = tempArr.map({String($0)}).joined()
+                    if dict[keystr] == true {
                         
+                    } else {
+                        dict[keystr] = true
+                        result.append(tempArr)
                     }
+                    left = left + 1
+                } else if temp > 0 {
+                    right = right - 1
+                } else {
+                    left = left + 1
                 }
             }
         }
-        
-        
 
         return result
     }
