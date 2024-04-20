@@ -44,6 +44,200 @@ class RootVC: UIViewController {
 }
 
 class Solution {
+    
+    //15. 三数之和
+    //https://leetcode.cn/problems/3sum/description/
+    func threeSum(_ nums: [Int]) -> [[Int]] {
+
+        var result = [[Int]]()
+        
+        
+        if nums.count < 3 {
+            return result //少于3个，直接返回空
+        }
+        
+        if nums.count == 3 {
+            if nums[0] + nums[1] + nums[2] == 0 {
+                return [[nums[0] , nums[1] , nums[2] ]] //3个正好
+            } else {
+                return result //返回空
+            }
+        }
+        
+        var isALlZero = true
+        var zeroCount = 0
+        var kindDict = [String:Int]()
+        var kindNum = [Int]()
+        
+        for m in 0...nums.count - 1 {
+
+            if nums[m] != 0 {
+                isALlZero = false
+            } else {
+                zeroCount = zeroCount + 1
+            }
+            
+            if let count = kindDict[String(nums[m])] {
+                if count == 1 {
+                    kindDict[String(nums[m])] = 2
+                    kindNum.append(nums[m])
+                }
+                if count == 2 && nums[m] == 0 {
+                    kindNum.append(0) //3个0
+                }
+            } else {
+                kindDict[String(nums[m])] = 1
+                kindNum.append(nums[m])
+            }
+
+        }
+        
+        if isALlZero {
+            return [[0,0,0]] //全部是0，返回空
+        }
+        
+        if kindNum.count < 3 {
+            return result
+        }
+        
+        var dict : [String : Bool] = [String : Bool]()
+        var xinArray = kindNum.sorted()
+        
+        for i in 0...xinArray.count - 3 {
+            
+            var left = i + 1
+            var right = xinArray.count - 1
+            
+            while left < right {
+                
+            }
+        }
+        
+        
+       // if kindNum.count
+        
+        if kindNum.count < 3 {
+            if zeroCount >= 3 {
+                result.append([0,0,0])
+            }
+            if kindNum.count == 2 {
+                if kindNum[0] + 2 * kindNum[1] == 0 {
+                    result.append([kindNum[0],kindNum[1],kindNum[1]])
+                }
+                
+                if kindNum[1] + 2 * kindNum[0] == 0 {
+                    result.append([kindNum[0],kindNum[0],kindNum[1]])
+                }
+            }
+            return result
+        }
+        
+        if kindNum.count == 3 {
+            if zeroCount >= 3 {
+                result.append([0,0,0])
+            }
+            
+            if kindNum[0] + kindNum[1] + kindNum[2] == 0 {
+                result.append([kindNum[0] , kindNum[1] , kindNum[2]])
+                return result
+            } else {
+                return result
+            }
+        }
+        
+        for i in 0...nums.count - 3 {
+            for j in i + 1 ... nums.count - 2 {
+                for k in j + 1 ... nums.count - 1 {
+                    var temp = nums[i] + nums[j] + nums[k]
+                    if temp == 0 {
+                        var tempArr = [nums[i] , nums[j] , nums[k]].sorted()
+                        let keystr = tempArr.map({String($0)}).joined()
+                        if dict[keystr] == true {
+                            
+                        } else {
+                            dict[keystr] = true
+                            result.append(tempArr)
+                        }
+                        
+                    }
+                }
+            }
+        }
+        
+        
+
+        return result
+    }
+    
+    
+    //16. 最接近的三数之和
+    //https://leetcode.cn/problems/3sum-closest/description/
+    func threeSumClosest(_ nums: [Int], _ target: Int) -> Int {
+        var result = 0
+        
+        
+        if nums.count < 3 {
+            return 0
+        }
+        
+        var sortArray = nums
+        sortArray = sortArray.sorted(by: <) //升序
+        
+        var tempSum:Int? = nil
+        
+        
+        for i in 0...sortArray.count - 3 {
+            
+            
+            var left = i + 1
+            var right = sortArray.count - 1
+            
+
+            
+            while left < right {
+                
+                var temp = sortArray[i] + sortArray[left] + sortArray[right]
+                
+                if temp == target {
+                    return temp
+                }
+                
+                if tempSum == nil {
+                    tempSum = temp
+                }
+                
+                if temp < target {
+                    left = left + 1
+                } else {
+                    right = right - 1
+                }
+                
+                var cCha = temp - target
+                var temCha = tempSum! - target
+                if cCha < 0 {
+                    cCha = -cCha
+                }
+                if temCha < 0 {
+                    temCha = -temCha
+                }
+                if temCha > cCha {
+                    tempSum = temp
+                }
+                
+                
+            }
+            
+        }
+        
+        if tempSum == nil {
+            
+        } else {
+            result = tempSum!
+        }
+        
+        return result
+    }
+    
     //19. 删除链表的倒数第 N 个结点
     //https://leetcode.cn/problems/remove-nth-node-from-end-of-list/description/
     func removeNthFromEnd(_ head: ListNode?, _ n: Int) -> ListNode? {
