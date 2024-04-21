@@ -45,6 +45,88 @@ class RootVC: UIViewController {
 
 class Solution {
     
+    
+    //17. 电话号码的字母组合
+    //https://leetcode.cn/problems/letter-combinations-of-a-phone-number/description/
+    func letterCombinations(_ digits: String) -> [String] {
+
+        var result = [String]()
+        if digits.count < 1 {
+            return result
+        }
+        var strArray = digits.map({ String($0) })
+        var zimuArr = [[String]]()
+        for dStr in strArray {
+            switch dStr {
+            case "2":zimuArr.append(["a","b","c"])
+            case "3":zimuArr.append(["d","e","f"])
+            case "4":zimuArr.append(["g","h","i"])
+            case "5":zimuArr.append(["j","k","l"])
+            case "6":zimuArr.append(["m","n","o"])
+            case "7":zimuArr.append(["p","q","r","s"])
+            case "8":zimuArr.append(["t","u","v"])
+            case "9":zimuArr.append(["w","x","y","z"])
+            default: break
+            }
+        }
+        
+        if  zimuArr.count < 1 {
+            return result
+        }
+        
+        var indexArray = [Int](repeating: 0, count: strArray.count)
+        var isOK = true
+        
+        while isOK {
+            
+            
+            var tempStr = ""
+            for i in 0...strArray.count-1 {
+                let zimu = zimuArr[i]
+                if indexArray[i] < zimu.count {
+                    tempStr.append(zimu[indexArray[i]])
+                }
+            }
+            
+            result.append(tempStr)
+            
+            var isJinwei = false
+            
+            for j in 0...indexArray.count - 1 {
+                let k = indexArray.count - 1 - j 
+   
+                let len = zimuArr[k].count
+                var currentIndex = indexArray[k]
+                
+                if k == indexArray.count - 1 {
+                    currentIndex = currentIndex + 1
+                } else if isJinwei {
+                    currentIndex = currentIndex + 1
+                }
+                
+                
+                if currentIndex >= len {
+                    currentIndex = 0
+                    isJinwei = true
+                } else {
+                    isJinwei = false
+                }
+                indexArray[k] = currentIndex
+                
+                if j == indexArray.count - 1 && isJinwei == true {
+                    isOK = false
+                }
+            }
+            
+            
+        }
+        
+        
+        
+        return result
+    }
+    
+    
     //15. 三数之和
     //https://leetcode.cn/problems/3sum/description/
     func threeSum(_ nums: [Int]) -> [[Int]] {
