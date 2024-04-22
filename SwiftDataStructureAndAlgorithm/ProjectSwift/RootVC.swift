@@ -45,6 +45,76 @@ class RootVC: UIViewController {
 
 class Solution {
     
+    //216. 组合总和 III
+    //https://leetcode.cn/problems/combination-sum-iii/description/?envType=daily-question&envId=2024-04-21
+    func combinationSum3(_ k: Int, _ n: Int) -> [[Int]] {
+
+        var result = [[Int]]()
+        
+        let numArray = [1,2,3,4,5,6,7,8,9]
+        
+        if k < 1 {
+            return result
+        }
+        
+        if k == 1 && (n > 9 || n < 1) {
+            return result
+        }
+        
+        if k == 1 && (n >= 1 && n <= 9) {
+            return [[n]]
+        }
+        
+        if k > 9 {
+            return result
+        }
+        
+        if k == 9 && n != 55  {
+            return result
+        }
+        
+        if k == 9 && n == 55  {
+            return [numArray]
+        }
+        
+
+        
+        var left = 0
+        var right = left + k - 1
+        
+        var summin = 0
+        var summax = 0
+        
+        var minArray = [Int]()
+        var maxArray = [Int]()
+        
+        for i in 0...k - 1 {
+            summin = summin + numArray[i]
+            minArray.append(numArray[i])
+        }
+        
+        for j in numArray.count - k...numArray.count - 1 {
+            summax = summax + numArray[j]
+            maxArray.append(numArray[j])
+        }
+        
+        if n > summax || n < summin {
+            return [[]]
+        }
+        if n == summin {
+            return [minArray]
+        }
+        
+        if n == summax {
+            return [maxArray]
+        }
+        
+        
+        
+        
+        return result
+    }
+    
     
     //17. 电话号码的字母组合
     //https://leetcode.cn/problems/letter-combinations-of-a-phone-number/description/
