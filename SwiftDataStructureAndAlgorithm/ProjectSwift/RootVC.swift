@@ -54,11 +54,11 @@ class Solution {
         let numArray = [1,2,3,4,5,6,7,8,9]
         
         if k < 1 {
-            return result
+            return []
         }
         
         if k == 1 && (n > 9 || n < 1) {
-            return result
+            return []
         }
         
         if k == 1 && (n >= 1 && n <= 9) {
@@ -66,14 +66,14 @@ class Solution {
         }
         
         if k > 9 {
-            return result
+            return []
         }
         
-        if k == 9 && n != 55  {
-            return result
+        if k == 9 && n != 45  {
+            return []
         }
         
-        if k == 9 && n == 55  {
+        if k == 9 && n == 45  {
             return [numArray]
         }
         
@@ -99,7 +99,7 @@ class Solution {
         }
         
         if n > summax || n < summin {
-            return [[]]
+            return []
         }
         if n == summin {
             return [minArray]
@@ -109,8 +109,47 @@ class Solution {
             return [maxArray]
         }
         
+        var tempArray = [[Int]]()
         
         
+        for i in 0...k-1 {
+           var ttArray = tempArray
+            if ttArray.count == 0 {
+                for j in 0...numArray.count-k {
+                    ttArray.append([numArray[j]])
+                }
+                tempArray = ttArray
+            } else {
+                var xArray = [[Int]]()
+                
+                for arr in ttArray {
+                    for m in 0...numArray.count - 1 {
+                        var nArr = arr
+                        if let arrlast = arr.last {
+                            if numArray[m] > arrlast{
+                                nArr.append(numArray[m])
+                                xArray.append(nArr)
+                            }
+                        }
+
+                    }
+                }
+                
+                tempArray = xArray
+            }
+            
+        }
+        
+        
+        for gArr in tempArray {
+            if gArr.reduce(0,+) == n {
+                result.append(gArr)
+            }
+        }
+        
+        if result.count == 0 {
+            return []
+        }
         
         return result
     }
