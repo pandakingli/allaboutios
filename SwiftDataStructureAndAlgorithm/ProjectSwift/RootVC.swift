@@ -18,6 +18,21 @@ import UIKit
   }
  
 
+// Definition for a binary tree node.
+ public class TreeNode {
+     public var val: Int
+     public var left: TreeNode?
+     public var right: TreeNode?
+     public init() { self.val = 0; self.left = nil; self.right = nil; }
+     public init(_ val: Int) { self.val = val; self.left = nil; self.right = nil; }
+     public init(_ val: Int, _ left: TreeNode?, _ right: TreeNode?) {
+         self.val = val
+         self.left = left
+         self.right = right
+     }
+ }
+
+
 
 class RootVC: UIViewController {
 
@@ -44,6 +59,27 @@ class RootVC: UIViewController {
 }
 
 class Solution {
+    
+    //2385. 感染二叉树需要的总时间
+    //https://leetcode.cn/problems/amount-of-time-for-binary-tree-to-be-infected/description/?envType=daily-question&envId=2024-04-24
+    func amountOfTime(_ root: TreeNode?, _ start: Int) -> Int {
+
+        var result = 0
+        
+        var ganranDic = [Int:Bool]()
+        ganranDic[start] = true
+        
+        
+        
+        
+        
+        
+        return result
+        
+    }
+    
+    
+    
     
     //216. 组合总和 III
     //https://leetcode.cn/problems/combination-sum-iii/description/?envType=daily-question&envId=2024-04-21
