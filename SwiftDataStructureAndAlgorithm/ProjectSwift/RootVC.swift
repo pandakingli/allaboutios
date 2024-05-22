@@ -54,7 +54,7 @@ class RootVC: UIViewController {
        // print(s,s2)
         
        // print(Solution().maxPower("leetcode"))
-        print(Solution().threeSum([-1,0,1,2,-1,-4]))
+       // print(Solution().threeSum([-1,0,1,2,-1,-4]))
     }
 }
 
@@ -63,23 +63,104 @@ class Solution {
     //2385. 感染二叉树需要的总时间
     //https://leetcode.cn/problems/amount-of-time-for-binary-tree-to-be-infected/description/?envType=daily-question&envId=2024-04-24
     func amountOfTime(_ root: TreeNode?, _ start: Int) -> Int {
-
+        if let gen = root {
+            if gen.left == nil && gen.right == nil {
+                return 0
+            }
+        } else {
+            return 0
+        }
         var result = 0
+        
+        if root!.val == start {
+            var ssArray = [TreeNode]()
+            ssArray.append(root!)
+            var arrayCount = 0
+            while ssArray.count > 0 {
+                var tempArray = ssArray
+                ssArray.removeAll()
+                
+                for node in tempArray {
+                    if let lleftnode = node.left {
+                        ssArray.append(lleftnode)
+                    }
+                    if let rrightnode = node.right {
+                        ssArray.append(rrightnode)
+                    }
+                }
+                arrayCount = arrayCount + 1
+            }
+            
+            return arrayCount - 1
+        } else {
+            
+        }
         
         var ganranDic = [Int:Bool]()
         ganranDic[start] = true
-        
-        
-        
-        
-        
-        
+        var isAll = false
+        while !isAll {
+            var nodeArray = [TreeNode]()
+            var ganranArray = [TreeNode]()
+            nodeArray.append(root!)
+            while nodeArray.count > 0 {
+                var tem = nodeArray
+                nodeArray.removeAll()
+                for node in tem {
+                    if ganranDic[node.val] == true {
+                        //当前节点已经被感染，检查子节点
+                        if let lleftnode = node.left {
+                            if ganranDic[lleftnode.val] == true {
+                            } else {
+                                ganranArray.append(lleftnode) //子节点未感染，加入数组
+                            }
+                        }
+                        if let rrightnode = node.right {
+                            if ganranDic[rrightnode.val] == true {
+                                
+                            } else {
+                                ganranArray.append(rrightnode) //子节点未感染，加入数组
+                            }
+                        }
+                    } else {
+                        var hasOne = false
+                        //当前节点没被感染，检查子节点
+                        if let lleftnode = node.left {
+                            if ganranDic[lleftnode.val] == true {
+                                // 子节点被感染
+                                hasOne = true
+                            }
+                        }
+                        if let rrightnode = node.right {
+                            if ganranDic[rrightnode.val] == true {
+                                // 子节点被感染
+                                hasOne = true
+                            }
+                        }
+                        if hasOne {
+                            ganranArray.append(node) //子节点感染，将父节点加入数组
+                        }
+                    }
+                    
+                    if let lleftnode = node.left {
+                        nodeArray.append(lleftnode)
+                    }
+                    if let rrightnode = node.right {
+                        nodeArray.append(rrightnode)
+                    }
+                } //for node in tem
+            } //while nodeArray.count > 0
+            if ganranArray.count > 0 {
+                result = result + 1
+                for gNode in ganranArray {
+                    ganranDic[gNode.val] = true
+                }
+            } else {
+                isAll = true
+            }
+        } //while !isAll
         return result
-        
-    }
-    
-    
-    
+    } //func amountOfTime
     
     //216. 组合总和 III
     //https://leetcode.cn/problems/combination-sum-iii/description/?envType=daily-question&envId=2024-04-21
