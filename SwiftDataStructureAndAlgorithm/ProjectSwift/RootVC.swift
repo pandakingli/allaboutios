@@ -63,6 +63,90 @@ class Solution {
     //2385. 感染二叉树需要的总时间
     //https://leetcode.cn/problems/amount-of-time-for-binary-tree-to-be-infected/description/?envType=daily-question&envId=2024-04-24
     func amountOfTime(_ root: TreeNode?, _ start: Int) -> Int {
+        var result = 0
+        
+        if let gen = root {
+            
+            if gen.left == nil && gen.right == nil {
+                return result
+            }
+            
+        } else {
+            return result
+        }
+        
+        
+        var numTu = [Int:[Int]]()
+        var nums = [Int]()
+        if let lleftnode = root!.left {
+            nums.append(lleftnode.val)
+        }
+        if let rrightnode = root!.right {
+            nums.append(rrightnode.val)
+        }
+        numTu[root!.val] = nums
+        
+        var ssArray = [TreeNode]()
+        ssArray.append(root!)
+        
+        while ssArray.count > 0 {
+            var temp = ssArray
+            ssArray.removeAll()
+            
+            for node in temp {
+
+                if let lleftnode = node.left {
+                    
+                    var nodenums = [Int]()
+                    nodenums.append(node.val)
+                    
+                    if let llnode = lleftnode.left {
+                        nodenums.append(llnode.val)
+                    }
+                    if let rrnode = lleftnode.right {
+                        nodenums.append(rrnode.val)
+                    }
+                    numTu[lleftnode.val] = nodenums
+                    ssArray.append(lleftnode)
+                }
+                
+                if let rrightnode = node.right {
+                    var nodenums = [Int]()
+                    nodenums.append(node.val)
+                    
+                    if let llnode = rrightnode.left {
+                        nodenums.append(llnode.val)
+                    }
+                    if let rrnode = rrightnode.right {
+                        nodenums.append(rrnode.val)
+                    }
+                    numTu[rrightnode.val] = nodenums
+                    ssArray.append(rrightnode)
+                }
+                
+            }
+        }
+        
+        
+        var q = numTu[start]!
+        numTu[start] = nil
+        while numTu.isEmpty == false {
+            result = result + 1
+            var tmp = q
+            q.removeAll()
+            for k in tmp {
+                if let shuzu = numTu[k] {
+                    q.append(contentsOf: shuzu)
+                    numTu[k] = nil
+                }
+            }
+        }
+        
+        
+        return result
+    }
+    
+    func amountOfTime2(_ root: TreeNode?, _ start: Int) -> Int {
      if let gen = root {
                if gen.left == nil && gen.right == nil {
                    return 0
