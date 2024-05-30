@@ -79,18 +79,25 @@ class Solution {
             
             var temparray = nodearray
             nodearray.removeAll()
+            var start = 1
             for item in temparray {
                 if let lnode = item.0.left {
-                    nodearray.append((lnode, 2*(item.1 - 1) + 1))
+                    if nodearray.count == 0 {
+                        start = item.1
+                    }
+                    nodearray.append((lnode, 2&*(item.1 &- start) &+ 1))
                 }
                 
                 if let rnode = item.0.right {
-                    nodearray.append((rnode, 2*(item.1 - 1) + 2))
+                    if nodearray.count == 0 {
+                        start = item.1
+                    }
+                    nodearray.append((rnode, 2&*(item.1 &- start) &+ 2))
                 }
             }
             
             if nodearray.count > 1 {
-                let width = nodearray.last!.1 - nodearray.first!.1 + 1
+                let width = nodearray.last!.1 &- nodearray.first!.1 &+ 1
                 if width > maxwidth {
                     maxwidth = width
                 }
