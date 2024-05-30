@@ -59,6 +59,47 @@ class RootVC: UIViewController {
 }
 
 class Solution {
+    //662. 二叉树最大宽度
+    //https://leetcode.cn/problems/maximum-width-of-binary-tree/description/
+    func widthOfBinaryTree(_ root: TreeNode?) -> Int {
+        var result = 0
+        if root == nil {
+            return result
+        }
+        
+        if root!.left == nil && root!.right == nil {
+            return 1
+        }
+        var maxwidth = 1
+        var nodearray = [(TreeNode,Int)]()
+        nodearray.append((root!,1))
+        
+        while nodearray.isEmpty == false {
+            
+            
+            var temparray = nodearray
+            nodearray.removeAll()
+            for item in temparray {
+                if let lnode = item.0.left {
+                    nodearray.append((lnode, 2*(item.1 - 1) + 1))
+                }
+                
+                if let rnode = item.0.right {
+                    nodearray.append((rnode, 2*(item.1 - 1) + 2))
+                }
+            }
+            
+            if nodearray.count > 1 {
+                let width = nodearray.last!.1 - nodearray.first!.1 + 1
+                if width > maxwidth {
+                    maxwidth = width
+                }
+            }
+        }
+        result = maxwidth
+        
+        return result
+    }
     
     //2385. 感染二叉树需要的总时间
     //https://leetcode.cn/problems/amount-of-time-for-binary-tree-to-be-infected/description/?envType=daily-question&envId=2024-04-24
