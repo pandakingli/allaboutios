@@ -59,6 +59,44 @@ class RootVC: UIViewController {
 }
 
 class Solution {
+    //3038. 相同分数的最大操作数目 I
+    //https://leetcode.cn/problems/maximum-number-of-operations-with-the-same-score-i/description/?envType=daily-question&envId=2024-06-07
+    func maxOperations(_ nums: [Int]) -> Int {
+
+        var result = 0
+        
+        if nums.count < 2 {
+            return 0
+        }
+        
+        if nums.count == 2 {
+            return 1
+        }
+        var tempSum = 0
+        var isFirst = true
+        for i in 1...nums.count - 1 {
+            if i % 2 == 0 {
+                continue
+            }
+            if isFirst {
+                tempSum = nums[i - 1] + nums[i]
+                isFirst = false
+                result = result + 1
+               
+            } else {
+                if tempSum == nums[i - 1] + nums[i] {
+                    result = result + 1
+                 
+                } else {
+                    break
+                }
+            }
+        }
+        
+        
+        return result
+    }
+    
     //662. 二叉树最大宽度
     //https://leetcode.cn/problems/maximum-width-of-binary-tree/description/
     func widthOfBinaryTree(_ root: TreeNode?) -> Int {
