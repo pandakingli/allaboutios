@@ -59,6 +59,34 @@ class RootVC: UIViewController {
 }
 
 class Solution {
+    //2938. 区分黑球与白球
+    //https://leetcode.cn/problems/separate-black-and-white-balls/description/?envType=daily-question&envId=2024-06-09
+    func minimumSteps(_ s: String) -> Int {
+
+        var result = 0
+        
+        if s.count <= 1 {
+            return 0
+        }
+        var newarray = s.map({String($0)})
+        newarray.reverse()
+        
+        var onecount = 0
+        
+        for i in 0...newarray.count - 1 {
+            if newarray[i] == "1" {
+                result = i - onecount + result
+                onecount = onecount + 1
+                
+            } else {
+                
+            }
+                
+        }
+        
+        return result
+    }
+    
     //3038. 相同分数的最大操作数目 I
     //https://leetcode.cn/problems/maximum-number-of-operations-with-the-same-score-i/description/?envType=daily-question&envId=2024-06-07
     func maxOperations(_ nums: [Int]) -> Int {
