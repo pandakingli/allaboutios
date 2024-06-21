@@ -65,8 +65,8 @@ class RootVC: UIViewController {
         print(now2.timeIntervalSince1970 - now.timeIntervalSince1970)
         print(result)
          */
-        
-        let nums = [8,3,4,3,5,0,5,6,6,2,8,5,6,2,3,8,3,5,1,0,2,9]
+        /*
+        let nums = [8, 8, 9]
         let ss = Solution()
         let now = Date()
         let e = ss.maxCoins(nums)
@@ -74,16 +74,30 @@ class RootVC: UIViewController {
        // print(ss.myQDic)
         let now2 = Date()
         print(now2.timeIntervalSince1970 - now.timeIntervalSince1970)
+         */
     }
 }
 
 class Solution {
+    
+    func maxCoins(_ nums: [Int]) -> Int {
+        var result = 0
+        
+        
+        
+        
+        
+        return result
+    }
+    
+    
     var myQDic = [String:Int]()
     //312. 戳气球
     //https://leetcode.cn/problems/burst-balloons/?envType=daily-question&envId=2024-06-09
-    func maxCoins(_ nums: [Int]) -> Int {
-
+    func maxCoins2(_ nums: [Int]) -> Int {
+        
         var newnums = nums.filter({$0 > 0}) //过滤掉0
+        
         var result = 0
         
         if newnums.count < 1 {
@@ -97,7 +111,7 @@ class Solution {
         let rnums = newnums.reversed()
         let rstr = rnums.map { String($0) }.joined(separator: ", ")
         let sStr = newnums.map { String($0) }.joined(separator: ", ")
-
+        
         if myQDic[sStr] != nil {
             return myQDic[sStr]!
         }
@@ -112,10 +126,29 @@ class Solution {
             return result
         }
         
-        if newnums.count == 3 || newnums.count == 4 || newnums.count == 5 {
+        var isallsame = true
+        let firstitem = newnums[0]
+        for item in newnums {
+            if item != firstitem {
+                isallsame = false
+                break
+            }
+        }
+        
+        if isallsame {
+            var count3 = newnums.count - 3 + 1
+            result = count3 * (firstitem * firstitem * firstitem) + firstitem * firstitem + firstitem
+            return result
+        }
+        
+        var tempresult = 0
+        var tempgoodarray = [Int]()
+        var temp_k = 0
+        if newnums.count >= 3  {
             
-            var temp = 0
+            
             for k in 0...newnums.count - 1 {
+               
                 var kleft = 1
                 if k - 1 >= 0 {
                     kleft = newnums[k-1]
@@ -125,23 +158,36 @@ class Solution {
                 if k + 1 <= newnums.count - 1 {
                     kright = newnums[k+1]
                 }
+                
                 let ksum = kleft * kright * newnums[k]
                 
                 var temparray = newnums
                 temparray.remove(at: k)
                 
-                var tt = ksum + maxCoins(temparray)
-                if tt > temp {
-                    temp = tt
+                var kksum = ksum + maxCoins(temparray)
+                
+                if kksum > tempresult {
+                    tempresult = kksum
+                    tempgoodarray = temparray
+                    temp_k = k
                 }
             }
             
-            result = temp
+            print("\n")
+            print(newnums)
+            print("tempresult = " + String(tempresult) + " index = " + String(temp_k))
+            print(tempgoodarray)
+            print("\n")
+            
+            result = tempresult
             myQDic[sStr] = result
-            return result
         }
         
+        return result
         
+    }
+       
+    /*
         var min_j = 0
         var c_j = 0
         var tempxx = 0
@@ -177,7 +223,8 @@ class Solution {
         myQDic[sStr] = result
         
         return result
-    }
+         */
+  //  }
     
     //3040. 相同分数的最大操作数目 II
     //https://leetcode.cn/problems/maximum-number-of-operations-with-the-same-score-ii/description/?envType=daily-question&envId=2024-06-09
