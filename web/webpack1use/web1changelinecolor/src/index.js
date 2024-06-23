@@ -1,5 +1,5 @@
 //使用ES6导入语法，导入jQuery
-import $ from jQuery
+import $ from 'jquery'
 
 // 定义jQuery的入口函数
 
