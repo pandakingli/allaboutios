@@ -6,7 +6,7 @@ import $ from 'jquery'
 $(function(){
 //实现奇数偶数行变颜色
 
-$('li:odd').css('background-color','red')
-$('li:even').css('background-color','green')
+$('li:odd').css('background-color','green')
+$('li:even').css('background-color','red')
 
 })
