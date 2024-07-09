@@ -26,12 +26,27 @@ module.exports = {
 
    //webpack的运行模式，development开发模式，production
    mode: 'development',
+
    devServer: {
+     // contentBase: "./public",
+    // static: './src',
      open: true,//初次打包完成后，自动打开浏览器
-     host: '127.0.0.1', //实时打包所使用的主机地址
-     port: '8099', //实时打包所使用的端口号
+     host: '127.0.0.1',//实时打包所使用的主机地址，可以使用localhost或者IP地址
+     port: '8099', //实时打包所使用的端口号，如果是80就可以省略
+    // allowedHosts: "all"
    },
-   plugins: [htmlPlugin] //通过plugins节点，使htmlPlugin生效
+
+   plugins: [htmlPlugin], //通过plugins节点，使htmlPlugin生效
+  
+   module:{
+     rules:[
+          {test:/\.css$/,use:['style-loader',"css-loader"]}
+        ]
+   }
+   // /\.css$/ 正则表达式，\转译字符.
+   //test表示匹配的文件类型，npm i style-loader@3.0.0 css-loader@5.2.6 -D
+   //use数组中指定的loader顺序是固定的
+   //多个loader的调用顺序是从后往前调用
 
 }
 
