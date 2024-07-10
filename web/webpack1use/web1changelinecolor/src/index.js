@@ -6,7 +6,7 @@ import $ from 'jquery'
 
 //导入样式（在webpack中一切皆是模块，都可以通过ES6导入语法进行导入和使用）
 import './css/index.css'
-
+import './css/index.less'
 
 
 $(function(){
