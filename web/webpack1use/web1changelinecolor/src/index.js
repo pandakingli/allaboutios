@@ -8,11 +8,24 @@ import $ from 'jquery'
 import './css/index.css'
 import './css/index.less'
 
+import logo from './images/logo.png'
+$('.imagebox').attr('src',logo)
 
 $(function(){
 //实现奇数偶数行变颜色
-
 $('li:odd').css('background-color','green')
 $('li:even').css('background-color','red')
-
 })
+
+
+//1 定义名为info的装饰器
+function info(target) {
+    //2 为目标添加静态属性 info
+    target.info = 'Person info'
+}
+//3 为person类应用info装饰器
+@info
+class Person {
+}
+
+console.log(Person.info)
