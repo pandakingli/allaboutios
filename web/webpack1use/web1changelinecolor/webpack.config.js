@@ -43,7 +43,7 @@ module.exports = {
           {test:/\.css$/,use:['style-loader',"css-loader"]},
           {test:/\.less$/,use:['style-loader',"css-loader","less-loader"]},
           {test:/\.jpg|png|gif$/,use:'url-loader?limit=22229'}, //小于limit会被转成base64
-          {test:/\.js$/,use:'babel-loader', exclude: /node_modules/}
+          {test:/\.js$/,use:'babel-loader',exclude: /node_modules/} // babel-loader处理高级js语法
         ]
    }
    // /\.css$/ 正则表达式，\转译字符.
