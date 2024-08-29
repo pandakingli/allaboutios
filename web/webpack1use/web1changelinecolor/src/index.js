@@ -8,8 +8,9 @@ import $ from 'jquery'
 import './css/index.css'
 import './css/index.less'
 
-import logo from './images/logo.png'
-$('.imagebox').attr('src',logo)
+import logotu from './images/tu0.png'
+
+$('.imagebox').attr('src',logotu)
 
 $(function(){
 //实现奇数偶数行变颜色

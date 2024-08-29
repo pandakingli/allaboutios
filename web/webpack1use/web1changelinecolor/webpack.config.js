@@ -22,8 +22,13 @@ const htmlPlugin = new HtmlPlugin({
      filename: './index.html' //指定生成的文件的存放路径
 })
 
+const path = require('path')
 module.exports = {
-
+     entry: path.join(__dirname, './src/index.js'),
+     output: {
+          path: path.join(__dirname, './dist'),
+          filename: 'js/bundle.js'
+     },
    //webpack的运行模式，development开发模式，production
    mode: 'development',
 
@@ -42,8 +47,28 @@ module.exports = {
      rules:[
           {test:/\.css$/,use:['style-loader',"css-loader"]},
           {test:/\.less$/,use:['style-loader',"css-loader","less-loader"]},
-          {test:/\.jpg|png|gif$/,use:'url-loader?limit=22229'}, //小于limit会被转成base64
-          {test:/\.js$/,use:'babel-loader',exclude: /node_modules/} // babel-loader处理高级js语法
+         // {test:/\.jpg|jpeg|png|gif$/,use:'url-loader?limit=22229'}, //小于limit会被转成base64
+         {
+          test: /\.(jpe?g|png|gif|svg)$/i,
+          type: 'asset/resource',
+          parser: {
+               dataUrlCondition: {
+                   maxSize: 10 * 1024
+               }
+           },
+          generator: {
+            filename: "img/assetmodule.[name][ext]", // 对复制后的资源重命名
+            publicPath: './'
+          },
+        },
+        {
+          test: /\.html$/,
+          // 处理html文件的img图片（负责引入img，从而能被url-loader处理）
+          // webpack5中使用 html-withimg-loader代替
+          // loader: 'html-loader'
+          loader: 'html-withimg-loader'
+        },
+       {test:/\.js$/,use:'babel-loader',exclude: /node_modules/} // babel-loader处理高级js语法
         ]
    }
    // /\.css$/ 正则表达式，\转译字符.
