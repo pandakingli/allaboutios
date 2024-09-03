@@ -7,7 +7,8 @@ import $ from 'jquery'
 //导入样式（在webpack中一切皆是模块，都可以通过ES6导入语法进行导入和使用）
 import './css/index.css'
 import './css/index.less'
-
+//倒入info
+import info from './js/test/info.js'
 import logotu from './images/tu0.png'
 
 $('.imagebox').attr('src',logotu)
@@ -20,13 +21,17 @@ $('li:even').css('background-color','red')
 
 
 //1 定义名为info的装饰器
-function info(target) {
+function infotu(target) {
     //2 为目标添加静态属性 info
-    target.info = 'Person info'
+    target.infotu = 'Person info'
 }
 //3 为person类应用info装饰器
-@info
+@infotu
 class Person {
 }
 
-console.log(Person.info)
+console.log(Person.infotu)
+
+
+
+               

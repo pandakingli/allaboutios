@@ -26,15 +26,17 @@ const htmlPlugin = new HtmlPlugin({
 
 const path = require('path')
 module.exports = {
+     
      entry: path.join(__dirname, './src/index.js'),
      output: {
           path: path.join(__dirname, './dist'),
           filename: 'js/bundle.js'
      },
+     
    //webpack的运行模式，development开发模式，production
    mode: 'development',
-   //devtool: 'eval-source-map', //在发布项目的时候出于安全性考虑建议关闭SourceMap
-   devtool: 'nosources-source-map',
+   devtool: 'eval-source-map', //在发布项目的时候出于安全性考虑建议关闭SourceMap
+   //devtool: 'nosources-source-map',
    devServer: {
      // contentBase: "./public",
     // static: './src',
@@ -74,6 +76,13 @@ module.exports = {
         
        {test:/\.js$/,use:'babel-loader',exclude: /node_modules/} // babel-loader处理高级js语法
         ]
+   },
+   resolve: {
+     
+     alias: {
+          //告诉webpack 代码中@代表src这个目录
+          '@': path.join(__dirname, './src/')
+     }
    }
    // /\.css$/ 正则表达式，\转译字符.
    //test表示匹配的文件类型，npm i style-loader@3.0.0 css-loader@5.2.6 -D
