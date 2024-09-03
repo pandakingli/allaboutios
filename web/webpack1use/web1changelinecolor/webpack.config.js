@@ -16,6 +16,8 @@ module.exports = {
 //导入html插件，得到构造函数
 const HtmlPlugin = require('html-webpack-plugin')
 
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+
 // 创建html插件的实例对象
 const htmlPlugin = new HtmlPlugin({
      template: './src/index.html', //指定原文件的存放路径
@@ -31,7 +33,8 @@ module.exports = {
      },
    //webpack的运行模式，development开发模式，production
    mode: 'development',
-
+   //devtool: 'eval-source-map', //在发布项目的时候出于安全性考虑建议关闭SourceMap
+   devtool: 'nosources-source-map',
    devServer: {
      // contentBase: "./public",
     // static: './src',
@@ -41,13 +44,13 @@ module.exports = {
     // allowedHosts: "all"
    },
 
-   plugins: [htmlPlugin], //通过plugins节点，使htmlPlugin生效
+   plugins: [htmlPlugin, new CleanWebpackPlugin()], //通过plugins节点，使htmlPlugin生效
   
    module:{
      rules:[
           {test:/\.css$/,use:['style-loader',"css-loader"]},
           {test:/\.less$/,use:['style-loader',"css-loader","less-loader"]},
-         // {test:/\.jpg|jpeg|png|gif$/,use:'url-loader?limit=22229'}, //小于limit会被转成base64
+         // {test:/\.jpg|jpeg|png|gif$/,use:'url-loader?limit=22229&outputpath=images'}, //小于limit会被转成base64
          {
           test: /\.(jpe?g|png|gif|svg)$/i,
           type: 'asset/resource',
@@ -68,6 +71,7 @@ module.exports = {
           // loader: 'html-loader'
           loader: 'html-withimg-loader'
         },
+        
        {test:/\.js$/,use:'babel-loader',exclude: /node_modules/} // babel-loader处理高级js语法
         ]
    }
