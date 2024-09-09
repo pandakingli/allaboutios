@@ -79,16 +79,56 @@ class RootVC: UIViewController {
 }
 
 class Solution {
+   
+    //169. 多数元素
+    //https://leetcode.cn/problems/majority-element/description/?envType=study-plan-v2&envId=top-interview-150
+    func majorityElement(_ nums: [Int]) -> Int {
+
+        if nums.count < 1 {
+            return 0
+        }
+        
+        if nums.count == 1 {
+            return nums.first!
+        }
+        
+        var maxnum = 0
+        var halfcount = nums.count / 2
+        var someDict = [Int: Int]()
+
+        for item in nums {
+            if someDict[item] != nil {
+                someDict[item] = someDict[item]! + 1
+                if someDict[item]! > halfcount {
+                    maxnum = item
+                    break
+                }
+            } else {
+                someDict[item] = 1
+            }
+        }
+        
+        return maxnum
+
+    }
+    
+    
+    
+    
+    
+    
+    
+    
     
     func maxCoins(_ nums: [Int]) -> Int {
         var result = 0
         
-        
-        
-        
-        
         return result
     }
+    
+    
+    
+    
     
     
     var myQDic = [String:Int]()
