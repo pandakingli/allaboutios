@@ -1,8 +1,7 @@
 import UIKit
 
+/*
 var greeting = "Hello, playground"
-
-
 let arrayOfInt = [2,3,4,5,4,7,2]
 let newArr = arrayOfInt.map { $0 * 10 }
 arrayOfInt.map ({ (someInt:Int) -> Int in return someInt * 10}) //1.闭包语法
@@ -20,3 +19,54 @@ let returnFormatMap = bookAmount.map { (key: String, value: Double) in
 }
 print(returnFormatMap)
 /*打印: ["Junglebook", "Harrypotter"] */
+
+var str1 = "Hello world!"
+// 根据 " " 把 str 分割
+var subStirngs = str1.split(separator: " ")
+print("结果：\(subStirngs)")
+print("类型：\(type(of: subStirngs))")
+
+let str2 = "abcdefghijklmn"
+let str3 = str2.prefix(2);
+print(str3) // 打印 ab
+
+for index in 1...5 {
+    print(index) // 打印 1 2 3 4 5
+}
+
+for index in 1..<5 {
+    print(index) //打印 1 2 3 4 不包含5
+}
+*/
+
+// range 截取
+let str = "abcdefghijklmn"
+let indexstart = str.index(str.startIndex, offsetBy: 3)
+let indexend = str.index(str.startIndex, offsetBy: 5)
+let strrange = str[indexstart...indexend]
+print(strrange)
+// 结果:def
+
+let range = str.range(of: "jk")!
+print(str[range])
+//结果:jk
+print(str[str.startIndex..<range.lowerBound])
+// 结果:abcdefghi
+print(str[str.startIndex..<range.upperBound])
+// 结果:abcdefghijk
+
+
+let someText = "hello"
+let array = someText.map({ String($0) })
+// [String] 输出应为["h", "e", "l", "l", "o"]
+
+for item in someText {
+    item.asciiValue
+}
+for item in array {
+   // item.cha
+}
+var asciiarray = Array(someText.utf8);
+print(asciiarray) //打印出字符串每一个字符对应的ASCII整数值
+//大写字母 ASII 【65-90】
+//小写字母 ASII 【97-122】

@@ -80,6 +80,72 @@ class RootVC: UIViewController {
 
 class Solution {
    
+    //125. 验证回文串
+    //https://leetcode.cn/problems/valid-palindrome/description/?envType=study-plan-v2&envId=top-interview-150
+    func isPalindrome(_ s: String) -> Bool {
+
+        var isOK = false
+        
+        
+        if s.isEmpty {
+            return true
+        }
+        
+        var arr = [String]()
+        for item in s {
+            let anum = item.asciiValue!
+            if (anum >= 97 && anum <= 122) || (anum >= 65 && anum <= 90) || (anum >= 48 && anum <= 57){
+                arr.append(item.lowercased())
+            }
+        }
+        
+        let astring = arr.map { String($0) }.joined()
+        let bstring = arr.reversed().map { String($0) }.joined()
+        
+        if astring == bstring {
+            isOK = true
+        }
+        return isOK
+        
+    }
+    
+    
+    //28. 找出字符串中第一个匹配项的下标
+    //https://leetcode.cn/problems/find-the-index-of-the-first-occurrence-in-a-string/description/?envType=study-plan-v2&envId=top-interview-150
+    func strStr(_ haystack: String, _ needle: String) -> Int {
+
+        if haystack.isEmpty || needle.isEmpty {
+            return -1
+        }
+        
+        if needle.count > haystack.count {
+            return -1
+        }
+        
+        if needle.count == haystack.count {
+            if needle == haystack {
+                return 0
+            }
+            return -1
+        }
+        
+        
+        var goodindex = -1
+        
+        for index in 0...haystack.count - needle.count {
+            let start = haystack.index(haystack.startIndex, offsetBy: index)
+            let end = haystack.index(start, offsetBy: needle.count-1)
+            if haystack[start...end] == needle {
+                goodindex = index
+                break
+            }
+        }
+        
+        return goodindex
+        
+    }
+    
+    
     //169. 多数元素
     //https://leetcode.cn/problems/majority-element/description/?envType=study-plan-v2&envId=top-interview-150
     func majorityElement(_ nums: [Int]) -> Int {
