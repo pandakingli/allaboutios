@@ -38,7 +38,7 @@ for index in 1..<5 {
     print(index) //打印 1 2 3 4 不包含5
 }
 */
-
+/*
 // range 截取
 let str = "abcdefghijklmn"
 let indexstart = str.index(str.startIndex, offsetBy: 3)
@@ -70,3 +70,12 @@ var asciiarray = Array(someText.utf8);
 print(asciiarray) //打印出字符串每一个字符对应的ASCII整数值
 //大写字母 ASII 【65-90】
 //小写字母 ASII 【97-122】
+
+*/
+
+let str = "abcdefghijklmn"
+
+let s_a = str.index(str.startIndex, offsetBy: 1)
+let s_z = str.index(str.startIndex, offsetBy: str.count - 2)
+print(str[s_a...s_z])
+//print(str[1...2])

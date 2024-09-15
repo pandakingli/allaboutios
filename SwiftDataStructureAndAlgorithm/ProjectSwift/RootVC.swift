@@ -75,11 +75,221 @@ class RootVC: UIViewController {
         let now2 = Date()
         print(now2.timeIntervalSince1970 - now.timeIntervalSince1970)
          */
+        var s = "rjufvjafbxnbgriwgokdgqdqewn"
+        var t =  "mjmqqjrmzkvhxlyruonekhhofpzzslupzojfuoztvzmmqvmlhgqxehojfowtrinbatjujaxekbcydldglkbxsqbbnrkhfdnpfbuaktupfftiljwpgglkjqunvithzlzpgikixqeuimmtbiskemplcvljqgvlzvnqxgedxqnznddkiujwhdefziydtquoudzxstpjjitmiimbjfgfjikkjycwgnpdxpeppsturjwkgnifinccvqzwlbmgpdaodzptyrjjkbqmgdrftfbwgimsmjpknuqtijrsnwvtytqqvookinzmkkkrkgwafohflvuedssukjgipgmypakhlckvizmqvycvbxhlljzejcaijqnfgobuhuiahtmxfzoplmmjfxtggwwxliplntkfuxjcnzcqsaagahbbneugiocexcfpszzomumfqpaiydssmihdoewahoswhlnpctjmkyufsvjlrflfiktndubnymenlmpyrhjxfdcq"
+        
+        //s = "ab"
+        //t = "baab"
+       print(Solution().isSubsequence2(s, t))
     }
 }
 
 class Solution {
-   
+    
+    
+    //290. 单词规律
+    //https://leetcode.cn/problems/word-pattern/description/?envType=study-plan-v2&envId=top-interview-150
+    func wordPattern(_ pattern: String, _ s: String) -> Bool {
+        var isOK = true
+        var hashdic_p = [Character:String]()
+        var hashdic_s = [String:Character]()
+        if pattern.count == 0 || pattern.isEmpty || s.isEmpty || s.count == 0 {
+            return false
+        }
+        
+        let arr_pattern = Array(pattern)
+        
+        let arr_s = s.split(separator: " ")
+        
+        if arr_pattern.count == 0 || arr_pattern.count != arr_s.count {
+            return false
+        }
+       
+        for i in 0...arr_pattern.count - 1 {
+            let pp = arr_pattern[i]
+            let ss = String(arr_s[i])
+            if hashdic_p[pp] == nil && hashdic_s[ss] == nil {
+                hashdic_p[pp] = ss
+                hashdic_s[ss] = pp
+            } else if hashdic_p[pp] != ss || hashdic_s[ss] != pp {
+                isOK = false
+                break
+            }
+        }
+        return isOK
+    }
+    
+    //383. 赎金信
+    //https://leetcode.cn/problems/ransom-note/description/?envType=study-plan-v2&envId=top-interview-150
+    func canConstruct(_ ransomNote: String, _ magazine: String) -> Bool {
+        var isOK = true
+        
+        if ransomNote.count > magazine.count {
+            return false
+        }
+        
+        if ransomNote.isEmpty || ransomNote.count == 0 {
+            return true
+        }
+        
+        var hashdic = [Int:Bool]()
+        var mArray = Array(magazine)
+        for item in ransomNote {
+            var hasfound = false
+            for i in 0...mArray.count - 1 {
+                if item == mArray[i] {
+                    if hashdic[i] == nil {
+                        hasfound = true
+                        hashdic[i] = true
+                        break
+                    }
+                }
+            }
+            if hasfound == false {
+                isOK = false
+                break
+            }
+        }
+        
+        return isOK
+    }
+    
+    //392. 判断子序列
+    //https://leetcode.cn/problems/is-subsequence/description/?envType=study-plan-v2&envId=top-interview-150
+    func isSubsequence2(_ s: String, _ t: String) -> Bool {
+        // 在string上进行搜索, 首先想到2 pointers类型解法
+        if s.count == 0 { return true }
+        else if t.count == 0 { return false }
+
+        var sArray = Array(s)
+        var sp = 0
+
+        for char in t {
+            if char == sArray[sp] {
+                sp += 1
+                if sp == s.count { return true }
+            }
+        }
+
+        return false
+    }
+
+    
+    func isSubsequence(_ s: String, _ t: String) -> Bool {
+        var isOK = false
+        
+        if s == t {
+            return true
+        }
+        
+        if s.count >= t.count {
+            return false
+        }
+        
+        if s.count == 0 || s.isEmpty {
+            return true
+        }
+        
+        if s.count == 1 {
+            for item in t {
+                if item == s.first! {
+                    isOK = true
+                    break
+                }
+            }
+            return isOK
+        }
+        
+        
+        var firstindex = -1
+        for i in 0...t.count - s.count {
+            let tindex = t.index(t.startIndex, offsetBy: i)
+            if s.first! == t[tindex] {
+                firstindex = i
+                break
+            }
+        }
+        
+        if firstindex == -1 {
+            return false
+        }
+        var lastindex = -1
+        for j in 0...t.count  - firstindex - s.count {
+            let nindex = t.count - 1 - j
+            let jindex = t.index(t.startIndex, offsetBy: nindex)
+            if s.last! == t[jindex] {
+                lastindex = nindex
+                break
+            }
+        }
+        
+        if lastindex == -1 {
+            return false
+        }
+        
+        if s.count == 2 {
+            return true
+        }
+        
+        let s_a = s.index(s.startIndex, offsetBy: 1)
+        let s_z = s.index(s.startIndex, offsetBy: s.count - 2)
+        let news = String(s[s_a...s_z])
+        //print("news = " + news)
+        
+        let t_a = t.index(t.startIndex, offsetBy: firstindex + 1)
+        let t_z = t.index(t.startIndex, offsetBy: lastindex - 1)
+        let newt = String(t[t_a...t_z])
+        //print("newt = " + newt)
+        isOK = isSubsequence(news, newt)
+        return isOK
+    }
+    
+    
+   //超时间
+    /*
+    func isSubsequence(_ s: String, _ t: String) -> Bool {
+        var isOK = false
+        
+        if s == t {
+            return true
+        }
+        
+        if s.count >= t.count {
+            return false
+        }
+        
+        if s.count == 0 || s.isEmpty {
+            return true
+        }
+        
+        for i in 0...t.count - s.count {
+            let tindex = t.index(t.startIndex, offsetBy: i)
+            if t[tindex] == s.first! {
+                if s.count == 1 {
+                    isOK = true
+                    break
+                }
+                
+                let sindex = s.index(s.startIndex, offsetBy: 1)
+                let news = String(s[sindex..<s.endIndex])
+                
+                let ttindex = t.index(tindex, offsetBy: 1)
+                let newt = String(t[ttindex..<t.endIndex])
+                
+                let midresult = isSubsequence(news, newt)
+                if midresult == true {
+                    isOK = true
+                    break
+                }
+            }
+            
+        }
+        
+                return isOK
+    }
+    
+    */
+    
     //125. 验证回文串
     //https://leetcode.cn/problems/valid-palindrome/description/?envType=study-plan-v2&envId=top-interview-150
     func isPalindrome(_ s: String) -> Bool {
