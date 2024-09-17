@@ -75,16 +75,231 @@ class RootVC: UIViewController {
         let now2 = Date()
         print(now2.timeIntervalSince1970 - now.timeIntervalSince1970)
          */
+        /*
         var s = "rjufvjafbxnbgriwgokdgqdqewn"
         var t =  "mjmqqjrmzkvhxlyruonekhhofpzzslupzojfuoztvzmmqvmlhgqxehojfowtrinbatjujaxekbcydldglkbxsqbbnrkhfdnpfbuaktupfftiljwpgglkjqunvithzlzpgikixqeuimmtbiskemplcvljqgvlzvnqxgedxqnznddkiujwhdefziydtquoudzxstpjjitmiimbjfgfjikkjycwgnpdxpeppsturjwkgnifinccvqzwlbmgpdaodzptyrjjkbqmgdrftfbwgimsmjpknuqtijrsnwvtytqqvookinzmkkkrkgwafohflvuedssukjgipgmypakhlckvizmqvycvbxhlljzejcaijqnfgobuhuiahtmxfzoplmmjfxtggwwxliplntkfuxjcnzcqsaagahbbneugiocexcfpszzomumfqpaiydssmihdoewahoswhlnpctjmkyufsvjlrflfiktndubnymenlmpyrhjxfdcq"
         
         //s = "ab"
         //t = "baab"
        print(Solution().isSubsequence2(s, t))
+         */
+        
+       // print(Solution().reverseBits(0b00000010100101000001111010011100))
     }
 }
 
 class Solution {
+    
+    //530. 二叉搜索树的最小绝对差
+    //https://leetcode.cn/problems/minimum-absolute-difference-in-bst/description/?envType=study-plan-v2&envId=top-interview-150
+    func getarray(_ root: TreeNode?) -> [Int] {
+        var arr = [Int]()
+        
+        if root == nil {
+            return []
+        }
+        
+        if root!.left == nil && root!.right == nil {
+            return [root!.val]
+        }
+        
+        arr.append(contentsOf: getarray(root!.left))
+        arr.append(root!.val)
+        arr.append(contentsOf: getarray(root!.right))
+        return arr
+    }
+    
+    func getMinimumDifference(_ root: TreeNode?) -> Int {
+        var result = 0
+        
+        if root == nil {
+            return 0
+        }
+        
+        if root!.left == nil && root!.right == nil {
+            return 0
+        }
+        
+        /*
+        var tempnode = root!
+        var nodearray = [TreeNode]()
+        var valarray = [Int]()
+        var isok = true
+        while isok {
+            if tempnode.left == nil {
+                valarray.append(tempnode.val)
+                if tempnode.right == nil {
+                    if nodearray.count == 0 {
+                        isok = false
+                        break
+                    } else {
+                        tempnode = nodearray.last!
+                        nodearray.removeLast()
+                        
+                    }
+                } else {
+                    tempnode = tempnode.right!
+                }
+            } else {
+                nodearray.append(tempnode)
+                tempnode = tempnode.left!
+            }
+        }
+         */
+        
+        let temparray = getarray(root!)
+        
+        print(temparray)
+        var tmin = 0
+        for i in 0...temparray.count - 2 {
+            let rmin = abs(temparray[i] - temparray[i+1])
+            if tmin == 0 {
+                tmin = rmin
+            } else {
+                tmin = min(tmin, rmin)
+            }
+        }
+        result = tmin
+        return result
+    }
+    
+    /*
+    func getMinimumDifference(_ root: TreeNode?) -> Int {
+        var result = 0
+        if root == nil {
+            return 0
+        }
+        
+        if root!.left == nil && root!.right == nil {
+            return 0
+        } else {
+            var leftmin = 0
+            if root!.left != nil {
+                leftmin = getMinimumDifference(root!.left!)
+                let templeft = abs(root!.val - root!.left!.val)
+                
+                if leftmin > 0 && templeft > 0 {
+                    leftmin = min(leftmin, templeft)
+                } else {
+                    leftmin = max(leftmin, templeft)
+                }
+            }
+            
+            var rightmin = 0
+            if root!.right != nil {
+                rightmin = getMinimumDifference(root!.right!)
+                let tempright = abs(root!.val - root!.right!.val)
+                
+                if rightmin > 0 && tempright > 0 {
+                    rightmin = min(rightmin, tempright)
+                } else {
+                    rightmin = max(rightmin, tempright)
+                }
+            }
+            
+            
+            if leftmin > 0 && rightmin > 0 {
+                result = min(leftmin, rightmin)
+            } else {
+                result = max(leftmin, rightmin)
+            }
+            
+        }
+        return result
+    }
+    */
+    //222. 完全二叉树的节点个数
+    //https://leetcode.cn/problems/count-complete-tree-nodes/description/?envType=study-plan-v2&envId=top-interview-150
+    func countNodes(_ root: TreeNode?) -> Int {
+        var result = 0
+        
+        if root == nil {
+            return 0
+        }
+        
+        if root!.left == nil && root!.right == nil {
+            return 1
+        } else {
+            result = 1 + countNodes(root!.left) + countNodes(root!.right)
+        }
+        
+        return result
+    }
+    
+    //226. 翻转二叉树
+    //https://leetcode.cn/problems/invert-binary-tree/description/?envType=study-plan-v2&envId=top-interview-150
+    func invertTree(_ root: TreeNode?) -> TreeNode? {
+        if root == nil {
+            return nil
+        }
+        
+        if root!.left == nil && root!.right == nil {
+            return root
+        } else {
+            var mid = root!.left
+            root!.left = invertTree(root!.right)
+            root!.right = invertTree(mid)
+            return root
+        }
+    }
+    
+    //190. 颠倒二进制位
+    //https://leetcode.cn/problems/reverse-bits/description/?envType=study-plan-v2&envId=top-interview-150
+    func reverseBits(_ n: Int) -> Int {
+        var result = 0
+        var temp = n
+        for i in 0...31 {
+            result = result | ( temp & 0x80000000)
+            if i < 31 {
+            temp = temp << 1
+            result = result >> 1
+            }
+        }
+        
+        return result
+    }
+    
+    //242. 有效的字母异位词
+    //https://leetcode.cn/problems/valid-anagram/description/?envType=study-plan-v2&envId=top-interview-150
+    func isAnagram(_ s: String, _ t: String) -> Bool {
+        var isOK = true
+        
+        if s.isEmpty && t.isEmpty {
+            return true
+        }
+        
+        if s.count != t.count {
+            return false
+        }
+        
+        var hash_s = [Character:Int]()
+        var hash_t = [Character:Int]()
+        
+        for item in s {
+            if hash_s[item] == nil {
+                hash_s[item] = 1
+            } else {
+                hash_s[item] = 1 + hash_s[item]!
+            }
+        }
+        
+        for item in t {
+            if hash_t[item] == nil {
+                hash_t[item] = 1
+            } else {
+                hash_t[item] = 1 + hash_t[item]!
+            }
+        }
+        
+        
+        for char in s {
+            if hash_s[char] != hash_t[char] {
+                isOK = false
+            }
+        }
+        
+        return isOK
+    }
     
     
     //290. 单词规律

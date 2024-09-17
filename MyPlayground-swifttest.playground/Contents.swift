@@ -73,9 +73,16 @@ print(asciiarray) //打印出字符串每一个字符对应的ASCII整数值
 
 */
 
+/*
 let str = "abcdefghijklmn"
 
 let s_a = str.index(str.startIndex, offsetBy: 1)
 let s_z = str.index(str.startIndex, offsetBy: str.count - 2)
 print(str[s_a...s_z])
 //print(str[1...2])
+*/
+
+var a = 1
+let result = a << 1
+print("Binary:", String(result, radix: 2))
+//Binary: 10
