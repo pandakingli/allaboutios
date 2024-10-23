@@ -85,10 +85,225 @@ class RootVC: UIViewController {
          */
         
        // print(Solution().reverseBits(0b00000010100101000001111010011100))
+        
+     var nums =  [8038,9111,5458,8483,5052,9161,8368,2094,8366,9164,53,7222,9284,5059,4375,2667,2243,5329,3111,5678,5958,815,6841,1377,2752,8569,1483,9191,4675,6230,1169,9833,5366,502,1591,5113,2706,8515,3710,7272,1596,5114,3620,2911,8378,8012,4586,9610,8361,1646,2025,1323,5176,1832,7321,1900,1926,5518,8801,679,3368,2086,7486,575,9221,2993,421,1202,1845,9767,4533,1505,820,967,2811,5603,574,6920,5493,9490,9303,4648,281,2947,4117,2848,7395,930,1023,1439,8045,5161,2315,5705,7596,5854,1835,6591,2553,8628]
+        
+        Solution().smallestRangeII(nums, 4643)
     }
 }
 
 class Solution {
+    
+    //908. 最小差值 I
+    //https://leetcode.cn/problems/smallest-range-i/description/
+    func smallestRangeI(_ nums: [Int], _ k: Int) -> Int {
+        if nums.isEmpty {
+            return 0
+        }
+        
+        if nums.count == 1 {
+            return 0
+        }
+        
+        var result = 0
+        var newarr = nums.sorted(by: <)
+        var maxnum = newarr.last!
+        var minnum = newarr.first!
+        var cha = maxnum - minnum
+        if k * 2 >= cha {
+            result = 0
+        } else {
+            result = cha - k * 2
+        }
+        
+        return result
+    }
+    
+    
+    //910. 最小差值 II
+    //https://leetcode.cn/problems/smallest-range-ii/description/
+    func smallestRangeII(_ nums: [Int], _ k: Int) -> Int {
+        if nums.isEmpty {
+            return 0
+        }
+        
+        if nums.count == 1 {
+            return 0
+        }
+        
+        var result = 0
+        var bbarray = nums.sorted(by: <)
+        var bmax = bbarray.last!
+        var bmin = bbarray.first!
+        var bcha = bmax - bmin
+       // print(bbarray)
+        //print("chushi:" + String(bcha))
+        if  k == 0 || k >= bcha {
+            return bcha
+        }
+        result = bcha
+        for j in 0..<bbarray.count - 1 {
+            
+            let tempmax = max(bbarray[j] + k, bbarray.last! - k)
+            let tempmin = min(bbarray.first! + k, bbarray[j+1] - k)
+            result = min(result, tempmax - tempmin)
+        }
+        
+        return result
+    }
+    
+    /*
+    func smallestRangeII(_ nums: [Int], _ k: Int) -> Int {
+        if nums.isEmpty {
+            return 0
+        }
+        
+        if nums.count == 1 {
+            return 0
+        }
+        
+        var result = 0
+        var bbarray = nums.sorted(by: <)
+        var bmax = bbarray.last!
+        var bmin = bbarray.first!
+        var bcha = bmax - bmin
+        print(bbarray)
+        print("chushi:" + String(bcha))
+        if  k == 0 || k >= bcha {
+            return bcha
+        }
+        
+        var leftindex = 0
+        var rightindex = bbarray.count - 1
+        
+        while leftindex <= rightindex {
+            let leftnum = bbarray[leftindex]
+            let rightnum = bbarray[rightindex]
+            if leftindex == 0 && rightindex == bbarray.count - 1 {
+                bbarray[0] = bbarray[0] + k
+                bbarray[rightindex] = bbarray[rightindex]  - k
+                bmax = max(bbarray[0], bbarray[rightindex])
+                bmin = min(bbarray[0], bbarray[rightindex])
+            } else if leftindex == rightindex {
+                
+                var upcha = max(bmax,bbarray[rightindex] + k) - min(bmin, bbarray[leftindex] + k)
+                var downcha = max(bmax,bbarray[rightindex] - k) - min(bmin, bbarray[leftindex] - k)
+                if upcha <= downcha {
+                    bbarray[leftindex] = bbarray[leftindex] + k
+                } else {
+                    bbarray[leftindex] = bbarray[leftindex] - k
+                }
+                bmax = max(bmax, bbarray[leftindex], bbarray[rightindex])
+                bmin = min(bmin, bbarray[leftindex], bbarray[rightindex])
+                
+            } else {
+
+                    
+                    var shang = max(bmax,bbarray[rightindex] + k) - min(bmin, bbarray[leftindex] + k)
+                    var xia = max(bmax,bbarray[rightindex] - k) - min(bmin, bbarray[leftindex] - k)
+                    var nei = max(bmax,bbarray[rightindex] - k, bbarray[leftindex] + k) - min(bmin, bbarray[rightindex] - k, bbarray[leftindex] + k)
+                    var wai = max(bmax,bbarray[rightindex] + k, bbarray[leftindex] - k) - min(bmin, bbarray[rightindex] + k, bbarray[leftindex] - k)
+                    
+                    
+                    
+                    let ttarray = [shang,xia,nei,wai]
+                    
+                    var ttmin = 0
+                    
+                    for tindex in 0...ttarray.count - 1 {
+                        if ttarray[tindex] < ttarray[ttmin] {
+                            ttmin = tindex
+                        }
+                    }
+                    
+                    if ttmin == 0 {
+                        bbarray[leftindex] = bbarray[leftindex] + k
+                        bbarray[rightindex] = bbarray[rightindex]  + k
+                    }
+                    
+                    if ttmin == 1 {
+                        bbarray[leftindex] = bbarray[leftindex] - k
+                        bbarray[rightindex] = bbarray[rightindex]  - k
+                    }
+                    
+                    if ttmin == 2 {
+                        bbarray[leftindex] = bbarray[leftindex] + k
+                        bbarray[rightindex] = bbarray[rightindex]  - k
+                    }
+                    
+                    if ttmin == 3 {
+                        bbarray[leftindex] = bbarray[leftindex] - k
+                        bbarray[rightindex] = bbarray[rightindex]  + k
+                    }
+                    
+                        bmax = max(bmax, bbarray[leftindex], bbarray[rightindex])
+                        bmin = min(bmin, bbarray[leftindex], bbarray[rightindex])
+                    
+
+            }
+            
+            leftindex = leftindex + 1
+            rightindex = rightindex - 1
+
+        }
+        print(bbarray)
+        result = bmax - bmin
+        
+        print("bmax = " + String(bmax))
+        print("bmin = " + String(bmin))
+        print("result:" + String(result))
+        if result > bcha {
+            result = bcha
+        }
+        
+        return result
+    }
+    */
+    //637. 二叉树的层平均值
+    //https://leetcode.cn/problems/average-of-levels-in-binary-tree/description/?envType=study-plan-v2&envId=top-interview-150
+    func averageOfLevels(_ root: TreeNode?) -> [Double] {
+       var result = [Double]()
+       var nodearray = [TreeNode]()
+        if root == nil {
+            return result
+        }
+        nodearray.append(root!)
+        
+        while !nodearray.isEmpty {
+            
+        }
+        
+        return result
+    }
+    
+    
+    //LCR 081. 组合总和
+    //https://leetcode.cn/problems/Ygoe9J/description/
+    func combinationSum(_ candidates: [Int], _ target: Int) -> [[Int]] {
+       var result = [[Int]]()
+        
+        for i in 0...candidates.count - 1 {
+            let num = candidates[i]
+            if num == target {
+                result.append([num])
+            } else if num > target {
+                
+            } else {
+                let midnum = target - num
+                var newarr = Array(candidates[i...candidates.count - 1])
+                var arr = combinationSum(newarr, midnum)
+                for midarr in arr {
+                    if midarr.count > 0 {
+                        result.append([num] + midarr)
+                    }
+                }
+            }
+            
+        }
+        
+        return result
+    }
+    
     
     //530. 二叉搜索树的最小绝对差
     //https://leetcode.cn/problems/minimum-absolute-difference-in-bst/description/?envType=study-plan-v2&envId=top-interview-150

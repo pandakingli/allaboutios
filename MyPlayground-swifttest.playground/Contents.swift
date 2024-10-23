@@ -86,3 +86,20 @@ var a = 1
 let result = a << 1
 print("Binary:", String(result, radix: 2))
 //Binary: 10
+
+var array = [5, 2, 10, 1, 0, 100, 46, 105]
+/*
+ array[3...5]
+ array[3..<5]
+ array[...6]
+ array[..<6]
+ array[2...]
+ array[...]
+ */
+print(array[1...])
+let kk = Double(array.reduce(0, +)) / Double(array.count)
+print(kk)
+
+let pp = 4.0 / 3
+
+print(pp)
