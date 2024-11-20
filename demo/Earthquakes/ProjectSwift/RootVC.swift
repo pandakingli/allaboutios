@@ -13,22 +13,32 @@ class RootVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
     let cellidentifier:String = "EarthquakeInfoTableCell"
     var hud: MBProgressHUD!
     var statusBarview:UIView!
-    // 顶部刷新
     let header = MJRefreshNormalHeader()
-
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.title = "Earthquakes"
-        self.navigationController?.navigationBar.backgroundColor = UIColor.white
-        self.navigationController?.navigationBar.barStyle = UIBarStyle.default
-        statusBarview = UIView(frame:  CGRectMake(0, -20, self.view.frame.size.width, 20))
-        statusBarview.backgroundColor = UIColor.white
-        self.navigationController?.navigationBar.addSubview(statusBarview)
+        self.view.backgroundColor = UIColor.white
+        setupNavigationBar()
         setupTableview()
-        useURLSessionRequestData()
+        
         hud = MBProgressHUD.showAdded(to: view, animated: true)
         hud.show(animated: true)
+        
+        useURLSessionRequestData()
+    }
+    
+    override func viewWillLayoutSubviews() {
+        let layoutFrame = self.view.safeAreaLayoutGuide.layoutFrame
+        let insets = self.view.safeAreaInsets;
+        mytableview.frame = CGRect(x: insets.left, y: insets.top, width: self.view.bounds.size.width - insets.left - insets.right, height: self.view.bounds.size.height - insets.top - insets.bottom)
+    }
+    
+    func setupNavigationBar() {
+        self.title = "Earthquakes"
+        if self.navigationController != nil {
+            self.navigationController!.navigationBar.backgroundColor = UIColor.white
+            self.navigationController!.navigationBar.barStyle = UIBarStyle.default
+        }
     }
     
     func setupTableview() {
@@ -38,13 +48,10 @@ class RootVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
         self.view.addSubview(mytableview)
         mytableview.showsVerticalScrollIndicator = false
         mytableview.register(EarthquakeInfoCell.classForCoder(), forCellReuseIdentifier: cellidentifier)
-        //下拉刷新相关设置
         header.setRefreshingTarget(self, refreshingAction: #selector(RootVC.useURLSessionRequestData))
         self.mytableview!.mj_header = header
         if #available(iOS 15.0, *) {
             mytableview.sectionHeaderTopPadding = 0.0
-        } else {
-            // Fallback on earlier versions
         }
     }
     
@@ -55,40 +62,30 @@ class RootVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
             return
         }
         let request = URLRequest(url: dataurl!, cachePolicy: URLRequest.CachePolicy.useProtocolCachePolicy, timeoutInterval: 30)
-        //request.setValue(<#T##value: String?##String?#>, forHTTPHeaderField: <#T##String#>)
-        //request.httpBody =
         
         let datatask = URLSession.shared.dataTask(with: request) { Data, URLResponse, Error in
             DispatchQueue.main.async {
-                //self.view.hideToast()
                 self.hud.hide(animated: true)
-                //结束刷新
                 self.mytableview.mj_header!.endRefreshing()
             }
             
             if Error != nil {
                 print(Error!)
                 DispatchQueue.main.async {
-                    
-                    //self.view.makeToast("request failed:"  + Error!.localizedDescription, position: .center)
+                    self.view.makeToast("request failed:"  + Error!.localizedDescription, position: .center)
                 }
                 return
             }
             
             if let data = Data {
-                if let jsonString = String(data: data, encoding: .utf8) {
-                   // print("响应数据：\(jsonString)")
-                   // let jsonObjectData = jsonString.data(using: .utf8)!
                     let rspdata = try? JSONDecoder().decode(RspDataModel.self, from: data)
                     if rspdata != nil {
                         DispatchQueue.main.async {
-                            //回到主线程刷新数据
+                            self.view.makeToast("request ok", position: .center)
                             self.earthquakdata = rspdata
                             self.mytableview.reloadData()
-                            //self.view.hideToast()
                         }
                     }
-                }
             }
         }
         
@@ -109,10 +106,6 @@ class RootVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
             }
         }
     }
-    
-    
-    
-    
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         var count = 0
@@ -143,18 +136,16 @@ class RootVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
         return 72.0
     }
     
+    //点击跳转详情页
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print("")
-        
         if earthquakdata != nil {
             if indexPath.row < earthquakdata!.features.count {
                 let model = earthquakdata!.features[indexPath.row]
                 let mapvc = EarthMapWebVC()
                 mapvc.weburl = model.properties.url + "/map"
+                mapvc.webtitle = model.properties.title
                 self.navigationController?.pushViewController(mapvc, animated: true)
             }
         }
-        
     }
-
 }
