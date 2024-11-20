@@ -55,7 +55,7 @@ class RootVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
             if indexPath.row < earthquakdata!.features.count {
                 let model = earthquakdata!.features[indexPath.row]
                 let xcell = customCell as! EarthquakeInfoCell
-                xcell.updateCellUI(model.properties.title, "sources: " + model.properties.sources, "alert: " + model.properties.alert)
+                xcell.updateCellUI(model.properties.title, "sources: " + model.properties.sources, "alert: " + model.properties.alert, model.properties.mag)
             }
         }
         return customCell

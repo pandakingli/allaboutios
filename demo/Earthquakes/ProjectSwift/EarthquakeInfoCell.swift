@@ -30,13 +30,18 @@ class EarthquakeInfoCell: UITableViewCell {
         self.contentView.addSubview(alertlable)
         }
          
-  public  func updateCellUI(_ title: String, _ time: String, _ alert: String){
+    public  func updateCellUI(_ title: String, _ time: String, _ alert: String, _ mag: Float){
         titlelable.text = title
         timelable.text = time
         alertlable.text = alert
         titlelable.frame = CGRect(x: 5, y: 2, width: self.bounds.width-10, height: 20)
         timelable.frame = CGRect(x: 5, y: 25, width: self.bounds.width-10, height: 15)
         alertlable.frame = CGRect(x: 5, y: 43, width: self.bounds.width-10, height: 15)
+        if mag >= 7.5 {
+            titlelable.textColor = UIColor.red
+        } else {
+            titlelable.textColor = UIColor.black
+        }
       
     }
     
