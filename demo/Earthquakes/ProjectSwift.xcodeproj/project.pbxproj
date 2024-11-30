@@ -11,11 +11,23 @@
 		C291DABB2CECAB1200E71EEC /* EarthquakeInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C291DABA2CECAB1200E71EEC /* EarthquakeInfoCell.swift */; };
 		C291DABD2CECE42600E71EEC /* EarthMapVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C291DABC2CECE42600E71EEC /* EarthMapVC.swift */; };
 		C291DABF2CECE8A200E71EEC /* RspDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C291DABE2CECE8A200E71EEC /* RspDataModel.swift */; };
+		C293CBAB2CF19E3A0010F12B /* ProjectSwiftUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C293CBAA2CF19E3A0010F12B /* ProjectSwiftUITests.swift */; };
+		C293CBAD2CF19E3A0010F12B /* ProjectSwiftUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C293CBAC2CF19E3A0010F12B /* ProjectSwiftUITestsLaunchTests.swift */; };
 		C2A376702BB6F2040095C4B1 /* RootVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2A3766F2BB6F2040095C4B1 /* RootVC.swift */; };
 		C2D32AE42B2DEC7F00EFDB8D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2D32AE32B2DEC7F00EFDB8D /* AppDelegate.swift */; };
 		C2D32AED2B2DEC8000EFDB8D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C2D32AEC2B2DEC8000EFDB8D /* Assets.xcassets */; };
 		C2D32AF02B2DEC8000EFDB8D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C2D32AEE2B2DEC8000EFDB8D /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		C293CBAE2CF19E3A0010F12B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C2D32AD82B2DEC7F00EFDB8D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = C2D32ADF2B2DEC7F00EFDB8D;
+			remoteInfo = ProjectSwift;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		1793F3A38D15A18F2AC3CC33 /* Pods-ProjectSwift.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ProjectSwift.debug.xcconfig"; path = "Target Support Files/Pods-ProjectSwift/Pods-ProjectSwift.debug.xcconfig"; sourceTree = "<group>"; };
@@ -24,6 +36,9 @@
 		C291DABA2CECAB1200E71EEC /* EarthquakeInfoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EarthquakeInfoCell.swift; sourceTree = "<group>"; };
 		C291DABC2CECE42600E71EEC /* EarthMapVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EarthMapVC.swift; sourceTree = "<group>"; };
 		C291DABE2CECE8A200E71EEC /* RspDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RspDataModel.swift; sourceTree = "<group>"; };
+		C293CBA82CF19E3A0010F12B /* ProjectSwiftUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ProjectSwiftUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		C293CBAA2CF19E3A0010F12B /* ProjectSwiftUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectSwiftUITests.swift; sourceTree = "<group>"; };
+		C293CBAC2CF19E3A0010F12B /* ProjectSwiftUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectSwiftUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		C2A3766F2BB6F2040095C4B1 /* RootVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootVC.swift; sourceTree = "<group>"; };
 		C2D32AE02B2DEC7F00EFDB8D /* ProjectSwift.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ProjectSwift.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C2D32AE32B2DEC7F00EFDB8D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -33,6 +48,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		C293CBA52CF19E3A0010F12B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		C2D32ADD2B2DEC7F00EFDB8D /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -52,10 +74,20 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		C293CBA92CF19E3A0010F12B /* ProjectSwiftUITests */ = {
+			isa = PBXGroup;
+			children = (
+				C293CBAA2CF19E3A0010F12B /* ProjectSwiftUITests.swift */,
+				C293CBAC2CF19E3A0010F12B /* ProjectSwiftUITestsLaunchTests.swift */,
+			);
+			path = ProjectSwiftUITests;
+			sourceTree = "<group>";
+		};
 		C2D32AD72B2DEC7F00EFDB8D = {
 			isa = PBXGroup;
 			children = (
 				C2D32AE22B2DEC7F00EFDB8D /* ProjectSwift */,
+				C293CBA92CF19E3A0010F12B /* ProjectSwiftUITests */,
 				C2D32AE12B2DEC7F00EFDB8D /* Products */,
 				E27707970F1EF6F8A4A7FE97 /* Pods */,
 				351F65C91BF8947716EDC44F /* Frameworks */,
@@ -66,6 +98,7 @@
 			isa = PBXGroup;
 			children = (
 				C2D32AE02B2DEC7F00EFDB8D /* ProjectSwift.app */,
+				C293CBA82CF19E3A0010F12B /* ProjectSwiftUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -97,6 +130,24 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		C293CBA72CF19E3A0010F12B /* ProjectSwiftUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C293CBB22CF19E3A0010F12B /* Build configuration list for PBXNativeTarget "ProjectSwiftUITests" */;
+			buildPhases = (
+				C293CBA42CF19E3A0010F12B /* Sources */,
+				C293CBA52CF19E3A0010F12B /* Frameworks */,
+				C293CBA62CF19E3A0010F12B /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				C293CBAF2CF19E3A0010F12B /* PBXTargetDependency */,
+			);
+			name = ProjectSwiftUITests;
+			productName = ProjectSwiftUITests;
+			productReference = C293CBA82CF19E3A0010F12B /* ProjectSwiftUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
 		C2D32ADF2B2DEC7F00EFDB8D /* ProjectSwift */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = C2D32AF42B2DEC8000EFDB8D /* Build configuration list for PBXNativeTarget "ProjectSwift" */;
@@ -126,6 +177,10 @@
 				LastSwiftUpdateCheck = 1500;
 				LastUpgradeCheck = 1500;
 				TargetAttributes = {
+					C293CBA72CF19E3A0010F12B = {
+						CreatedOnToolsVersion = 15.0.1;
+						TestTargetID = C2D32ADF2B2DEC7F00EFDB8D;
+					};
 					C2D32ADF2B2DEC7F00EFDB8D = {
 						CreatedOnToolsVersion = 15.0.1;
 					};
@@ -145,11 +200,19 @@
 			projectRoot = "";
 			targets = (
 				C2D32ADF2B2DEC7F00EFDB8D /* ProjectSwift */,
+				C293CBA72CF19E3A0010F12B /* ProjectSwiftUITests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		C293CBA62CF19E3A0010F12B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		C2D32ADE2B2DEC7F00EFDB8D /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -204,6 +267,15 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		C293CBA42CF19E3A0010F12B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C293CBAD2CF19E3A0010F12B /* ProjectSwiftUITestsLaunchTests.swift in Sources */,
+				C293CBAB2CF19E3A0010F12B /* ProjectSwiftUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		C2D32ADC2B2DEC7F00EFDB8D /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -218,6 +290,14 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		C293CBAF2CF19E3A0010F12B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = C2D32ADF2B2DEC7F00EFDB8D /* ProjectSwift */;
+			targetProxy = C293CBAE2CF19E3A0010F12B /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin PBXVariantGroup section */
 		C2D32AEE2B2DEC8000EFDB8D /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
@@ -230,6 +310,40 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		C293CBB02CF19E3A0010F12B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = S9HRLGS74P;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = pandakingli.ProjectSwiftUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = ProjectSwift;
+			};
+			name = Debug;
+		};
+		C293CBB12CF19E3A0010F12B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = S9HRLGS74P;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = pandakingli.ProjectSwiftUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = ProjectSwift;
+			};
+			name = Release;
+		};
 		C2D32AF22B2DEC8000EFDB8D /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -414,6 +528,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		C293CBB22CF19E3A0010F12B /* Build configuration list for PBXNativeTarget "ProjectSwiftUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C293CBB02CF19E3A0010F12B /* Debug */,
+				C293CBB12CF19E3A0010F12B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		C2D32ADB2B2DEC7F00EFDB8D /* Build configuration list for PBXProject "ProjectSwift" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

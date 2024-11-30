@@ -17,6 +17,7 @@ class RootVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         self.view.backgroundColor = UIColor.white
         setupNavigationBar()
         setupTableview()
@@ -25,16 +26,52 @@ class RootVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
         hud.show(animated: true)
         
         useURLSessionRequestData()
+         
+        //testgcdbarrier()
+        //testgcdsemaphore()
+    }
+    
+    func testgcdsemaphore() {
+        let semaphore = DispatchSemaphore.init(value: 1)
+        let queuex = DispatchQueue.init(label: "test", qos: .default, attributes: .concurrent)
+        for i in 0..<10 {
+            queuex.async {
+                semaphore.wait()
+                print("i = \(i):\(Thread.current.description)")
+                semaphore.signal()
+            }
+        }
+    }
+    
+    
+    func testgcdbarrier() {
+        let queue = DispatchQueue(label: "barrier", attributes: .concurrent)
+        queue.async {
+            print("任务A")
+            
+        }
+        queue.async {
+            print("任务B")
+        }
+        
+        // barrier，必须等任务C完成后，才走后面任务D
+        queue.async(flags: .barrier) {
+            print("任务C")
+        }
+        
+        queue.async {
+            print("任务D")
+        }
     }
     
     override func viewWillLayoutSubviews() {
-        let layoutFrame = self.view.safeAreaLayoutGuide.layoutFrame
+        //let layoutFrame = self.view.safeAreaLayoutGuide.layoutFrame
         let insets = self.view.safeAreaInsets;
         mytableview.frame = CGRect(x: insets.left, y: insets.top, width: self.view.bounds.size.width - insets.left - insets.right, height: self.view.bounds.size.height - insets.top - insets.bottom)
     }
     
     func setupNavigationBar() {
-        self.title = "Earthquakes"
+        self.title = "Earthquakes List"
         if self.navigationController != nil {
             self.navigationController!.navigationBar.backgroundColor = UIColor.white
             self.navigationController!.navigationBar.barStyle = UIBarStyle.default
