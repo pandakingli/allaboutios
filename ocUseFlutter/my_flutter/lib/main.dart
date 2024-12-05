@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:my_flutter/pageBottomNavBar.dart';
 import 'package:my_flutter/pageTopNavBar.dart';
+import 'package:my_flutter/pageTestCode.dart';
+
 void main() => runApp(const MyApp());
 
 class MyApp extends StatelessWidget {
@@ -38,6 +40,12 @@ class _MyHomePageState extends State<MyHomePage> {
     });
   }
 
+  void _goToTestCodePage() {
+
+    Navigator.push(context, MaterialPageRoute(builder: (context) => const PageTestCode()));
+
+  }
+
   void _goToTopNavigationPage() {
 
     Navigator.push(context, MaterialPageRoute(builder: (context) => const PageTopNavBar()));
@@ -48,17 +56,15 @@ class _MyHomePageState extends State<MyHomePage> {
     Navigator.push(context, MaterialPageRoute(builder: (context) => const HomeBottomNavBar()));
 
   }
-
   void _dismissFlutterHomePage() {
     _channelHomePage.invokeMethod("dismiss");
   }
-
   @override
   Widget build(BuildContext context) {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text(widget.title),
+        title: Text(widget.title)
       ),
       body: Center(
 
@@ -71,6 +77,10 @@ class _MyHomePageState extends State<MyHomePage> {
             Text(
               '$_counter',
               style: Theme.of(context).textTheme.headlineMedium,
+            ),
+            ElevatedButton(
+              onPressed: _goToTestCodePage,
+              child: const Text("代码测试"),
             ),
             ElevatedButton(
               onPressed: _goToTopNavigationPage,
