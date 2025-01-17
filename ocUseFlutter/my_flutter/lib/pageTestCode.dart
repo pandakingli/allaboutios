@@ -26,7 +26,11 @@ class _PageTestCodeState extends State<PageTestCode> {
       ),
         ElevatedButton(
           onPressed: _goToTestCodeTimer1,
-          child: const Text("代码测试1-timer1"),
+          child: const Text("代码测试2-timer1"),
+        ),
+        ElevatedButton(
+          onPressed: _goToTestCode3,
+          child: const Text("代码测试3"),
         ),
       ],
       ),
@@ -51,6 +55,53 @@ class _PageTestCodeState extends State<PageTestCode> {
           fontSize: 16.0
       );
     });
+
+  }
+
+  Iterable<int> naturalsTo(int n) sync* {
+    int k = 0;
+    while (k < n) yield k++;
+  }
+
+  Stream<int> asynchronousNaturalsTo(int n) async* {
+    int k = 0;
+    while (k < n) yield k++;
+  }
+
+  Stream<int> testYield() async* {
+    for (int i = 0; i < 15;++i) {
+      yield i;
+    }
+  }
+
+// 要使用 `await for` 必须要在异步函数中
+  test() async {
+    Stream<int> st = testYield();
+    // 使用 await for 遍历stream的内容
+    print(st);
+    await for (int item in st) {
+      print(item);
+    }
+  }
+
+  Iterable<int> naturalsDownFrom(int n) sync* {
+    if (n > 0) {
+      yield n;
+      yield* naturalsDownFrom(n - 1);
+    }
+  }
+
+  Future<void> _goToTestCode3() async {
+      // await test();
+      //print(na)
+    /*
+    for (var element in naturalsTo(10)) {
+      print(element);
+    }
+     */
+    for (var element in naturalsDownFrom(10)) {
+      print(element);
+    }
 
   }
 

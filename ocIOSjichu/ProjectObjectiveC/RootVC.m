@@ -2,12 +2,13 @@
 //  RootVC.m
 //  ProjectObjectiveC
 //
-//  Created by lining02 on 2024/3/9.
+
 //
 
 
 #import <objc/runtime.h>
 #import "RootVC.h"
+#import "TestVC.h"
 
 //MARK: - HTRuntimeTool
 @interface HTRuntimeTool : NSObject
@@ -116,7 +117,10 @@
 
 @interface RootVC ()
 @property(nonatomic,strong) NSThread * nThread;
+@property(nonatomic,strong) UIButton * jumpBtn;
 @end
+
+typedef void (^CallBack)(void);
 
 @implementation RootVC
 
@@ -125,7 +129,83 @@
     self.view.backgroundColor = [UIColor redColor];
     //[self useTimerWithFire];
     // [self useNonMainThread];
-    [self testmethodswizzling];
+    // [self testmethodswizzling];
+    //[self testHeap];
+    // [self testStack];
+    // [self testStatic];
+    // [self test222];
+    [self setupJumpBtn];
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    NSLog(@"RootVC-viewWillDisappear");
+}
+
+- (void)viewDidDisappear:(BOOL)animated {
+    NSLog(@"RootVC-viewDidDisappear");
+}
+
+- (void)setupJumpBtn {
+    self.jumpBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    [self.jumpBtn setTitle:@"跳转" forState:UIControlStateNormal];
+    CGRect rect = (CGRect){100,200,100,60};
+    self.jumpBtn.frame = rect;
+    [self.jumpBtn addTarget:self action:@selector(jumpaction) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:self.jumpBtn];
+}
+
+- (void)jumpaction {
+   // [self.navigationController pushViewController:[TestVC new] animated:YES];
+    
+    TestVC *testvc = [TestVC new];
+    //testvc.modalPresentationStyle = UIModalPresentationFullScreen;
+    [self presentViewController:testvc animated:YES completion:nil];
+}
+
+
+- (void)test222{
+    
+    NSInteger i = 123;
+    NSLog(@"i的内存地址：%p", &i);
+    
+    NSString *string = @"CJL";
+    NSLog(@"string的内存地址：%p", string);
+    NSLog(@"&string的内存地址：%p", &string);
+    
+    NSObject *obj = [[NSObject alloc] init];
+    NSLog(@"obj的内存地址：%p", obj);
+    NSLog(@"&obj的内存地址：%p", &obj);
+}
+
+
+int clB;
+static int bssB;
+int initClB = 10;
+static int initBssB = 11;
+- (void)testStatic {
+    NSLog(@"clA = %p", &clB);
+    NSLog(@"bssB = %p", &bssB);
+    NSLog(@"initClB = %p", &initClB);
+    NSLog(@"initBssB = %p", &initBssB);
+   
+
+}
+
+
+- (void)testStack {
+    int a = 10;
+
+    NSLog(@"a == %p size == %lu",&a,sizeof(a));
+    NSLog(@"方法参数 self：%p",&self);
+    NSLog(@"方法参数 cmd：%p",&_cmd);
+}
+
+
+- (void)testHeap {
+    NSObject *object1 = [NSObject new];
+    NSObject *object2 = [NSObject new];
+    NSLog(@"object1 = %@",object1);
+    NSLog(@"object2 = %@",object2);
 }
 
 - (void)testmethodswizzling {

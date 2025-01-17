@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		80E5B8F52B9C392F003BB345 /* RootVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 80E5B8F42B9C392F003BB345 /* RootVC.m */; };
+		C217993C2D27E2A900D363F9 /* TestVC.m in Sources */ = {isa = PBXBuildFile; fileRef = C217993B2D27E2A900D363F9 /* TestVC.m */; };
 		C2D32AC02B2DEB5C00EFDB8D /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C2D32ABF2B2DEB5C00EFDB8D /* AppDelegate.m */; };
 		C2D32ACB2B2DEB5D00EFDB8D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C2D32ACA2B2DEB5D00EFDB8D /* Assets.xcassets */; };
 		C2D32ACE2B2DEB5D00EFDB8D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C2D32ACC2B2DEB5D00EFDB8D /* LaunchScreen.storyboard */; };
@@ -17,6 +18,8 @@
 /* Begin PBXFileReference section */
 		80E5B8F32B9C392F003BB345 /* RootVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RootVC.h; sourceTree = "<group>"; };
 		80E5B8F42B9C392F003BB345 /* RootVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RootVC.m; sourceTree = "<group>"; };
+		C217993A2D27E2A900D363F9 /* TestVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TestVC.h; sourceTree = "<group>"; };
+		C217993B2D27E2A900D363F9 /* TestVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TestVC.m; sourceTree = "<group>"; };
 		C2D32ABB2B2DEB5C00EFDB8D /* ProjectObjectiveC.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ProjectObjectiveC.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C2D32ABE2B2DEB5C00EFDB8D /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		C2D32ABF2B2DEB5C00EFDB8D /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -60,6 +63,8 @@
 				C2D32ABF2B2DEB5C00EFDB8D /* AppDelegate.m */,
 				80E5B8F32B9C392F003BB345 /* RootVC.h */,
 				80E5B8F42B9C392F003BB345 /* RootVC.m */,
+				C217993A2D27E2A900D363F9 /* TestVC.h */,
+				C217993B2D27E2A900D363F9 /* TestVC.m */,
 				C2D32ACA2B2DEB5D00EFDB8D /* Assets.xcassets */,
 				C2D32ACC2B2DEB5D00EFDB8D /* LaunchScreen.storyboard */,
 				C2D32ACF2B2DEB5D00EFDB8D /* Info.plist */,
@@ -137,6 +142,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C217993C2D27E2A900D363F9 /* TestVC.m in Sources */,
 				80E5B8F52B9C392F003BB345 /* RootVC.m in Sources */,
 				C2D32AC02B2DEB5C00EFDB8D /* AppDelegate.m in Sources */,
 				C2D32AD12B2DEB5D00EFDB8D /* main.m in Sources */,
