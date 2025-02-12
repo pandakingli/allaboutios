@@ -1,5 +1,11 @@
 import React from 'react';
-import {AppRegistry, StyleSheet, Text, View} from 'react-native';
+import {AppRegistry, 
+  StyleSheet, 
+  Text, 
+  View,
+  Button,
+  Alert,
+NativeModules} from 'react-native';
 
 const RNHighScores = ({scores}) => {
   const contents = scores.map(score => (
@@ -13,7 +19,11 @@ const RNHighScores = ({scores}) => {
       <Text style={styles.highScoresTitle}>
         2048 High Scores!
       </Text>
-      <Text style={styles.scores}>{contents}</Text>
+
+      <Text style={styles.scores}>{contents}</Text> 
+      
+      <Button title="离开React Native 页面" onPress={() => NativeModules.TestModule.quitRNview()}></Button> 
+
     </View>
   );
 };
@@ -36,6 +46,7 @@ const styles = StyleSheet.create({
     marginBottom: 5,
   },
 });
+
 
 
 AppRegistry.registerComponent('RNHighScores', () => RNHighScores);

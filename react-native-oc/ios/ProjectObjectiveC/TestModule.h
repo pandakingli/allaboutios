@@ -10,7 +10,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface TestModule : NSObject<RCTBridgeModule>
-
+-(void) updatewithRNVC:(UIViewController *) rnVC;
 @end
 
 NS_ASSUME_NONNULL_END
