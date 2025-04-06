@@ -2,7 +2,6 @@
 //  AppDelegate.m
 //  ProjectObjectiveC
 //
-//  Created by pandakingli on 2023/12/16.
 //
 
 #import "AppDelegate.h"
