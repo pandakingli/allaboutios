@@ -30,6 +30,7 @@ DerivedData/
 *.dSYM.zip
 *.dSYM
 
+pubspec.lock
 # CocoaPods
 #
 # We recommend against adding the Pods directory to your .gitignore. However

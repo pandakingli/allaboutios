@@ -3,8 +3,23 @@ import 'package:flutter/services.dart';
 import 'package:my_flutter/pageBottomNavBar.dart';
 import 'package:my_flutter/pageTopNavBar.dart';
 import 'package:my_flutter/pageTestCode.dart';
+import 'dart:io';
 
-void main() => runApp(const MyApp());
+class MyHttpOverrides extends HttpOverrides {
+  @override
+  HttpClient createHttpClient(SecurityContext? context) {
+    return super.createHttpClient(context)
+      ..badCertificateCallback =
+          (X509Certificate cert, String host, int port) => true; // 忽略证书错误
+  }
+
+
+}
+
+void main() {
+  HttpOverrides.global = MyHttpOverrides(); // 全局生效
+  runApp(const MyApp());
+}
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
