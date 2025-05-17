@@ -1,6 +1,5 @@
 import 'dart:convert';
 import 'dart:io';
-
 import 'package:dio/io.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter/material.dart';
@@ -12,6 +11,7 @@ import 'package:path/path.dart' as path;
 import 'package:crypto/crypto.dart';
 
 import 'download_overlay.dart';
+import 'package:cookie_jar/cookie_jar.dart';
 
 
 class testLogInterceptor extends Interceptor {
@@ -214,8 +214,10 @@ class _PageTestCodeState extends State<PageTestCode> {
     _downloadOverlay.show(context);
 
     final dio = createDioWithInterceptors();
-    String url = "https://newsfile.futunn.com/public/NN-PersistNoticeAttachment/7781/20250115/11510761-0.XLSX";
+   // String url = "https://newsfile.futunn.com/public/NN-PersistNoticeAttachment/7781/20250115/11510761-0.XLSX";
+    //String url = 'https://www.sec.gov/Archives/edgar/data/1039828/000000000024008887/filename2.txt?global_content=%7B%22promote_id%22%3A13766%2C%22sub_promote_id%22%3A33%2C%22f%22%3A%22news.futunn.com%2Fnotice%2F303656221%2Famerican-national-group-inc-dep-shs-rep-1-1000th-int%22%7D&chain_id=9tJ0de5ysrx3Ka.1k2ed0s';
 
+    String url = 'https://www.sec.gov/Archives/edgar/data/1039828/000000000024008887/filename2.txt';
     // 获取应用缓存目录
     final Directory cacheDir = await getTemporaryDirectory();
     // 生成 URL 的 MD5 哈希值
@@ -261,10 +263,11 @@ class _PageTestCodeState extends State<PageTestCode> {
     print('文件size: $filesize');
     } catch (e) {
       print('下载失败: $e');
+      _downloadOverlay.hide();
       rethrow;
     }
 
-_downloadOverlay.hide();
+    _downloadOverlay.hide();
     _downloadOverlay.progressNotifier.value = 0;
 }
 
@@ -284,8 +287,21 @@ _downloadOverlay.hide();
       return client;
     };
 
-    for (int k = 0; k < 1000; k++) {
-      dio.interceptors.add(testLogInterceptor());
+    // 创建 CookieJar 用于管理 Cookie
+    final cookieJar = CookieJar();
+
+    // 添加 Cookie 管理拦截器
+
+    //dio.interceptors.add(CookieManager(cookieJar));
+    dio.options.headers['User-Agent'] = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36';
+    dio.options.headers['Accept-Language'] = 'zh-TW,zh;q=0.9,en-US;q=0.8,en;q=0.7,zh-CN;q=0.6';
+    dio.options.headers['Accept'] = 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7';
+    dio.options.headers['sec-fetch-site'] = 'none';
+    dio.options.headers['sec-fetch-mode'] = 'navigate';
+    dio.options.headers['sec-fetch-dest'] = 'document';
+
+    for (int k = 0; k < 1; k++) {
+      //dio.interceptors.add(testLogInterceptor());
     }
 
     // 添加日志拦截器
@@ -299,7 +315,7 @@ _downloadOverlay.hide();
     ));
 
 // 自定义请求拦截器
-    for (int j = 0; j < 1000; j++) {
+    for (int j = 0; j < 1; j++) {
       dio.interceptors.add(InterceptorsWrapper(
           onResponse: (e, handler) {
             final timenow = DateTime.now().millisecondsSinceEpoch.toInt().toString();
@@ -309,7 +325,7 @@ _downloadOverlay.hide();
             if(e.data is Map<String, dynamic>) {
               print('xxx');
             }
-            for (int i = 0; i < 1000; i++) {
+            for (int i = 0; i < 1; i++) {
               // print('当前值: $i');
               e.extra["ep-$i"] = DateTime.now().millisecondsSinceEpoch.toString();
               e.requestOptions.extra["epe-$i"] = DateTime.now().millisecondsSinceEpoch.toInt().toString();
@@ -322,25 +338,8 @@ _downloadOverlay.hide();
 
 
 
-    // 自定义请求拦截器
-    dio.interceptors.add(InterceptorsWrapper(
-      onRequest: (options, handler) async {
-        // 可在此处添加统一请求头
-        options.headers.addAll({
-          'User-Agent': 'MyDownloader/1.0',
-          'Accept': '*/*',
-        });
-        return handler.next(options);
-      },
-      onError: (DioError error, handler) async {
-        // 统一错误处理
-        if (error.response?.statusCode != null) {
-          print('HTTP错误: ${error.response!.statusCode}');
-        }
-        // 可在此处添加重试逻辑
-        return handler.next(error);
-      },
-    ));
+
+
 
     return dio;
   }
