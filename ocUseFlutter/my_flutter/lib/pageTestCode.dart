@@ -217,7 +217,10 @@ class _PageTestCodeState extends State<PageTestCode> {
    // String url = "https://newsfile.futunn.com/public/NN-PersistNoticeAttachment/7781/20250115/11510761-0.XLSX";
     //String url = 'https://www.sec.gov/Archives/edgar/data/1039828/000000000024008887/filename2.txt?global_content=%7B%22promote_id%22%3A13766%2C%22sub_promote_id%22%3A33%2C%22f%22%3A%22news.futunn.com%2Fnotice%2F303656221%2Famerican-national-group-inc-dep-shs-rep-1-1000th-int%22%7D&chain_id=9tJ0de5ysrx3Ka.1k2ed0s';
 
-    String url = 'https://www.sec.gov/Archives/edgar/data/1039828/000000000024008887/filename2.txt';
+   // String url = 'https://www.sec.gov/Archives/edgar/data/1039828/000000000024008887/filename2.txt';
+
+    String url =  'https://www.sec.gov/Archives/edgar/data/1039828/000000000024008887/filename1.pdf';
+
     // 获取应用缓存目录
     final Directory cacheDir = await getTemporaryDirectory();
     // 生成 URL 的 MD5 哈希值
