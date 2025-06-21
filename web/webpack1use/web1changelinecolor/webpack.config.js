@@ -40,10 +40,11 @@ module.exports = {
    devServer: {
      // contentBase: "./public",
     // static: './src',
+     host: '0.0.0.0', // 关键！允许局域网访问
      open: true,//初次打包完成后，自动打开浏览器
      host: '127.0.0.1',//实时打包所使用的主机地址，可以使用localhost或者IP地址
-     port: '8099', //实时打包所使用的端口号，如果是80就可以省略
-    // allowedHosts: "all"
+     port: '8080', //实时打包所使用的端口号，如果是80就可以省略
+     allowedHosts: "all"
    },
 
    plugins: [htmlPlugin, new CleanWebpackPlugin()], //通过plugins节点，使htmlPlugin生效
