@@ -219,7 +219,9 @@ class _PageTestCodeState extends State<PageTestCode> {
 
    // String url = 'https://www.sec.gov/Archives/edgar/data/1039828/000000000024008887/filename2.txt';
 
-    String url =  'https://www.sec.gov/Archives/edgar/data/1039828/000000000024008887/filename1.pdf';
+   // String url =  'https://www.sec.gov/Archives/edgar/data/1039828/000000000024008887/filename1.pdf';
+    String url =  'https://news.platform.airstarbank.com/resource/2013377';
+
 
     // 获取应用缓存目录
     final Directory cacheDir = await getTemporaryDirectory();
@@ -282,7 +284,7 @@ class _PageTestCodeState extends State<PageTestCode> {
     (dio.httpClientAdapter as DefaultHttpClientAdapter).onHttpClientCreate = (client) {
       client.findProxy = (uri) {
         // 替换为你的电脑IP，端口通常为8888
-        return 'PROXY 192.168.50.159:8888';
+        return 'PROXY 192.168.50.92:8888';
       };
 
       // 处理HTTPS证书校验（仅测试环境使用！）
